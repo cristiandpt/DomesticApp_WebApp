@@ -1,0 +1,23 @@
+# Use an official Rust base image as the base image
+FROM rust:latest
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the Cargo.toml and Cargo.lock files to the container
+COPY Cargo.toml Cargo.lock ./
+
+# Build the dependencies in a separate step to optimize caching
+RUN cargo build --release
+
+# Copy the source code to the container
+COPY . .
+
+# Build the application
+RUN cargo build --release
+
+# Expose the port on which the server will listen
+EXPOSE 8000
+
+# Specify the command to run when the container starts
+CMD ["cargo", "run", "--release"]

@@ -1,0 +1,42 @@
+version: '3'
+services:
+  go-app:
+    build:
+      context: ./web_server/go-server
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - internal-network
+
+  rust-app:
+    build:
+      context: ./web_serverrust-server
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    networks:
+      - internal-network
+
+  node-app:
+    build:
+      context: ./web_client
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - internal-network  
+
+  postgres-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - 5432:5432
+    networks:
+      - internal-network      
+
+networks:
+  internal-network:

@@ -1,0 +1,31 @@
+version: '3'
+services:
+  go-app:
+    build:
+      context: ./go-server
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - internal-network
+
+  rust-app:
+    build:
+      context: ./rusrt-server
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    networks:
+      - internal-network
+
+  node-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - internal-network    
+
+networks:
+  internal-network:

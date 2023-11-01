@@ -1,0 +1,175 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-app
+  template:
+    metadata:
+      labels:
+        app: go-app
+    spec:
+      containers:
+        - name: go-app
+          image: your-dockerhub/go-app:latest
+          ports:
+            - containerPort: 8080
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rust-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rust-app
+  template:
+    metadata:
+      labels:
+        app: rust-app
+    spec:
+      containers:
+        - name: rust-app
+          image: your-dockerhub/rust-app:latest
+          ports:
+            - containerPort: 8000
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-app
+  template:
+    metadata:
+      labels:
+        app: node-app
+    spec:
+      containers:
+        - name: node-app
+          image: your-dockerhub/node-app:latest
+          ports:
+            - containerPort: 3000
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-db
+  template:
+    metadata:
+      labels:
+        app: postgres-db
+    spec:
+      containers:
+        - name: postgres-db
+          image: postgres:latest
+          env:
+            - name: POSTGRES_USER
+              value: myuser
+            - name: POSTGRES_PASSWORD
+              value: mypassword
+            - name: POSTGRES_DB
+              value: mydatabase
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-app-svc
+spec:
+  selector:
+    app: go-app
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: rust-app-svc
+spec:
+  selector:
+    app: rust-app
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-app-svc
+spec:
+  selector:
+    app: node-app
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-db-svc
+spec:
+  selector:
+    app: postgres-db
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+  type: ClusterIP
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  rules:
+    - host: yourdomain.com
+      http:
+        paths:
+          - path: /go-app
+            pathType: Prefix
+            backend:
+              service:
+                name: go-app-svc
+                port:
+                  number: 8080
+         
