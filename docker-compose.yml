@@ -18,12 +18,16 @@ services:
     networks:
       - internal-network
 
-  node-app:
+  frontend-app:
     build:
-      context: .
+      context: ./web_client
       dockerfile: Dockerfile
+    volumes:
+      - ./web_client/domesticapp:/home/app  
     ports:
       - 3000:3000
+    environment:
+      NODE_ENV: development  
     networks:
       - internal-network    
 
