@@ -146,7 +146,7 @@ mobile/native_mobile/captures
 mobile/native_mobile/.externalNativeBuild
 mobile/native_mobile/.cxx
 mobile/native_mobile/local.properties
-
+mobile/.idea
 
 mobile/flutter_mobile/*.iml
 mobile/flutter_mobile/.gradle
