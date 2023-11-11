@@ -131,37 +131,37 @@ dist
 
 
 
-mobile/native_mobile/**/*.iml
-mobile/native_mobile/\.gradle
-mobile/native_mobile/local.properties
-mobile/native_mobile/\.idea/caches
-mobile/native_mobile/\.idea/libraries
-mobile/native_mobile/\.idea/modules.xml
-mobile/native_mobile/\.idea/workspace.xml
-mobile/native_mobile/\.idea/navEditor.xml
-mobile/native_mobile/\.idea/assetWizardSettings.xml
-mobile/native_mobile/\.DS_Store
-mobile/native_mobile/build
-mobile/native_mobile/captures
-mobile/native_mobile/\.externalNativeBuild
-mobile/native_mobile/\.cxx
-mobile/native_mobile/local.properties
-mobile/\.idea
+/mobile/native_mobile/**/*.iml
+/mobile/native_mobile/.gradle
+/mobile/native_mobile/local.properties
+/mobile/native_mobile/.idea/caches
+/mobile/native_mobile/.idea/libraries
+/mobile/native_mobile/.idea/modules.xml
+/mobile/native_mobile/.idea/workspace.xml
+/mobile/native_mobile/.idea/navEditor.xml
+/mobile/native_mobile/.idea/assetWizardSettings.xml
+/mobile/native_mobile/.DS_Store
+/mobile/native_mobile/build
+/mobile/native_mobile/captures
+/mobile/native_mobile/.externalNativeBuild
+/mobile/native_mobile/.cxx
+/mobile/native_mobile/local.properties
+//mobile/.idea
 
-mobile/flutter_mobile/domesticapp_flutter/**/*.iml
-mobile/flutter_mobile/domesticapp_flutter/\.gradle
-mobile/flutter_mobile/domesticapp_flutter/local\.properties
-mobile/flutter_mobile/domesticapp_flutter/\.idea/caches
-mobile/flutter_mobile/domesticapp_flutter/\.idea/libraries
-mobile/flutter_mobile/domesticapp_flutter/\.idea/modules.xml
-mobile/flutter_mobile/domesticapp_flutter/\.idea/workspace.xml
-mobile/flutter_mobile/domesticapp_flutter/\.idea/navEditor.xml
-mobile/flutter_mobile/domesticapp_flutter/\.idea/assetWizardSettings.xml
-mobile/flutter_mobile/domesticapp_flutter/\.DS_Store
-mobile/flutter_mobile/domesticapp_flutter/build
-mobile/flutter_mobile/domesticapp_flutter/captures
-mobile/flutter_mobile/domesticapp_flutter/\.externalNativeBuild
-mobile/flutter_mobile/domesticapp_flutter/\.cxx
-mobile/flutter_mobile/domesticapp_flutter/local.properties
+/mobile/flutter_mobile/domesticapp_flutter/**/*.iml
+/mobile/flutter_mobile/domesticapp_flutter/.gradle
+/mobile/flutter_mobile/domesticapp_flutter/local\.properties
+/mobile/flutter_mobile/domesticapp_flutter/.idea/caches
+/mobile/flutter_mobile/domesticapp_flutter/.idea/libraries
+/mobile/flutter_mobile/domesticapp_flutter/.idea/modules.xml
+/mobile/flutter_mobile/domesticapp_flutter/.idea/workspace.xml
+/mobile/flutter_mobile/domesticapp_flutter/.idea/navEditor.xml
+/mobile/flutter_mobile/domesticapp_flutter/.idea/assetWizardSettings.xml
+/mobile/flutter_mobile/domesticapp_flutter/.DS_Store
+/mobile/flutter_mobile/domesticapp_flutter/build
+/mobile/flutter_mobile/domesticapp_flutter/captures
+/mobile/flutter_mobile/domesticapp_flutter/.externalNativeBuild
+/mobile/flutter_mobile/domesticapp_flutter/.cxx
+/mobile/flutter_mobile/domesticapp_flutter/local.properties
 
 
