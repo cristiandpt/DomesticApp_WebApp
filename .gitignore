@@ -129,7 +129,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-
+web_server/go-server/vendor/
 
 /mobile/native_mobile/**/*.iml
 /mobile/native_mobile/.gradle
