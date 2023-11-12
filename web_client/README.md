@@ -11,7 +11,7 @@ docker compose build "frontend-app"
 docker compose up "frontend-app"
 ```
 - Go to the [`localhost:3000`](http://localhost:3000/)
-- Open the project in VS Code, in the web_server app, and try to modify the code.
-- Review the change in the browser, the hot reload functionality.
+- Open the project in VS Code, in the web_server folder, and try to modify the code.
+- Review the change in the browser, the hot reload working.
 
 ## And... enjoy!
