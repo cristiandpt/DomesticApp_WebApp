@@ -11,10 +11,12 @@ services:
 
   rust-app:
     build:
-      context: ./rusrt-server
+      context: ./web_server/rust-server
       dockerfile: Dockerfile
     ports:
-      - 8000:8000
+      - 8001:8001
+    volumes:
+      - ./web_server/rust-server:/home/app    
     networks:
       - internal-network
 
