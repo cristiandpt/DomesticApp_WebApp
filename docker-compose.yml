@@ -14,9 +14,9 @@ services:
       context: ./web_server/rust-server
       dockerfile: Dockerfile
     ports:
-      - 8001:8001
+      - 8081:8081
     volumes:
-      - ./web_server/rust-server:/home/app    
+      - ./web_server/rust-server/domestik_app:/home/app/rust_domestik_app
     networks:
       - internal-network
 
