@@ -1,3 +1,5 @@
+use super::user::User;
+
 pub struct Worker {
 
     user: User,

@@ -1,4 +1,6 @@
-pub struct Client {
+use super::user::User;
+
+pub struct Client{
 
     user: User,
     service_url: &str,
