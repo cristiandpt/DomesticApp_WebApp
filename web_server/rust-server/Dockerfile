@@ -1,8 +1,14 @@
 # Use an official Rust base image as the base image
-FROM rust:latest
+FROM rust:1.67
+
+
+RUN ["mkdir", "-p", "/home/rust_domestik_app"]
 
 # Set the working directory inside the container
-WORKDIR /app
+WORKDIR /home/app
+
+
+#RUN ["cargo", "new", "rust_domestik_app"] 
 
 # Copy the Cargo.toml and Cargo.lock files to the container
 COPY Cargo.toml Cargo.lock ./
@@ -21,3 +27,5 @@ EXPOSE 8000
 
 # Specify the command to run when the container starts
 CMD ["cargo", "run", "--release"]
+
+#For do the Rust project without install locally it.
