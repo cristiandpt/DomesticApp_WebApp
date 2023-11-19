@@ -6,4 +6,5 @@ pub mod job;
 pub mod notification;
 pub mod payment;
 pub mod rating;
-pub mod rating;
+pub mod invoice;
+pub mod login;

@@ -1,5 +1,8 @@
+use serde::Serialize;
+
+#[derive(Serialize)]
 pub struct Rating {
     
-    id: i16,
-    rate: f32
+    pub id: i16,
+    pub rate: f32
 }

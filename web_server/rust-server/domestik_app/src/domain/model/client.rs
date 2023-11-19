@@ -1,8 +1,10 @@
+use serde::Serialize;
 use super::user::User;
 
+#[derive(Serialize)]
 pub struct Client{
 
-    user: User,
-    service_url: &str,
-    payment_method: &str
+    pub user: User,
+    pub service_url: String,
+    pub payment_method: String
 }

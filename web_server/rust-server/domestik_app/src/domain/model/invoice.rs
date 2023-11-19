@@ -1,5 +1,8 @@
+use serde::Serialize;
+
+#[derive(Serialize)]
 pub struct Invoice {
     
-    id: i16,
-    total: f64
+    pub id: i16,
+    pub total: f64
 }

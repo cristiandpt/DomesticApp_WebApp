@@ -1,6 +1,9 @@
+use serde::Serialize;
+
+#[derive(Serialize)]
 pub struct Notification {
 
-    id: i16,
-    time: &str,
-    date: &str
+    pub id: i16,
+    pub time: String,
+    pub date: String
 }

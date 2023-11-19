@@ -1,7 +1,10 @@
+use serde::Serialize;
+
+#[derive(Serialize)]
 pub struct Login {
 
-    username: &str,
-    refresh_token: &str,
-    access_token: &str,
-    password: &str
+    pub username: String,
+    pub refresh_token: String,
+    pub access_token: String,
+    pub password: String
 }
