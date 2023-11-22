@@ -24,6 +24,9 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./web_client/domesticapp:/home/app  
+      - /home/app/.next
+      - /home/app/node_modules
+
     ports:
       - 3000:3000
     environment:
