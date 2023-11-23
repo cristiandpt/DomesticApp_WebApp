@@ -11,7 +11,7 @@ services:
 
   rust-app:
     build:
-      context: ./web_serverrust-server
+      context: ./web_server/rust-server
       dockerfile: Dockerfile
     ports:
       - 8000:8000
