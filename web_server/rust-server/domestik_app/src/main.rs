@@ -3,6 +3,8 @@ use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
 
 use actix_server::Service;
 
+use dotenv::dotenv;
+
 mod views;
 mod utils;
 mod domain;
@@ -10,6 +12,9 @@ mod infraestructure;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+
+    dotenv().ok();
+
     HttpServer::new(|| {
         App::new()
             .wrap_fn(|req, srv| {

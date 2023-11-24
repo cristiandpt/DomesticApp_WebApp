@@ -13,6 +13,9 @@ actix-service = "2.0.2"
 futures = "0.3.29"
 bcrypt = "0.13.0"
 uuid = {version = "1.0.0", features = ["serde", "v4"]}
+chrono = {version = "0.4.19", features = ["serde"]}
+jsonwebtoken = "9.1.0"
+dotenv = "0.15.0"
 
 [[bin]]
 name = "domestik_app"
