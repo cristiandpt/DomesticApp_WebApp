@@ -1,7 +1,7 @@
 #[allow(unused_imports)]
 use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
 
-use actix_server::Service;
+use actix_service::Service;
 
 use dotenv::dotenv;
 
@@ -21,7 +21,7 @@ async fn main() -> std::io::Result<()> {
                 let future = srv.call(req);
                 async {
                     let response = future.await?;
-                    Ok(response);
+                    Ok(response)
                 }
             })
             .configure(views::view_factory)
