@@ -14,9 +14,9 @@ services:
       context: ./web_server/rust-server
       dockerfile: Dockerfile
     environment: 
-      - JWT_TOKEN: jwt_token  
-      - DATABASE_URL: string_connection
-      - DB_URL: postgres://username:password@localhost:5433/domesticapp_db
+      - JWT_TOKEN=jwt_token
+      - DATABASE_URL=string_connection
+      - DB_URL=postgres://username:password@localhost:5433/domesticapp_db
     ports:
       - 8081:8081
     volumes:
