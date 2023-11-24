@@ -11,6 +11,8 @@ serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 actix-service = "2.0.2"
 futures = "0.3.29"
+bcrypt = "0.13.0"
+uuid = {version = "1.0.0", features = ["serde", "v4"]}
 
 [[bin]]
 name = "domestik_app"

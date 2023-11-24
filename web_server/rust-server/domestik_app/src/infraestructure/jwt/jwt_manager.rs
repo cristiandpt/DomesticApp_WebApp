@@ -1,6 +1,7 @@
 use actix_server::dev::Paylaod;
 use actix_web::{Error, FromRequest, HttpRequest};
 use futures::future::{ ok, Ready};
+use uuid::Uuid;
 
 
 pub struct JwToken {
@@ -15,7 +16,7 @@ impl FromRequest for JwToken {
         match req.headers().get("Authorization") {
             Some(token) => {
                 let token =  JwToken{
-                    id: "A user id",
+                    id:  Uuid::new_v4().to_string(),
                     token: token.to_str().unwrap().to_string()
                 } 
                 ok(token);
