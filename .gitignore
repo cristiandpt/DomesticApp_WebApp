@@ -166,3 +166,4 @@ web_server/go-server/vendor/
 
 
 web_server/rust-server/domestik_app/target
+web_server/rust-server/domestik_app/.vscode
