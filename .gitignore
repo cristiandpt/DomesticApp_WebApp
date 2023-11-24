@@ -165,3 +165,4 @@ web_server/go-server/vendor/
 /mobile/flutter_mobile/domesticapp_flutter/local.properties
 
 
+web_server/rust-server/domestik_app/target
