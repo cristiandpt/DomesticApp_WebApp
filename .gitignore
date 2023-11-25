@@ -196,3 +196,7 @@ web_server/rust-server/domestik_app/.vscode/settings.json
 /mobile/flutter_mobile//android/app/profile
 /mobile/flutter_mobile//android/app/release
 
+web_server/rust-server/domestik_app/target
+web_server/rust-server/domestik_app/.vscode
+#vs code settings
+.vscode

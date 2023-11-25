@@ -2,7 +2,7 @@ version: '3'
 services:
   go-app:
     build:
-      context: ./go-server
+      context: ./web_server/go-server
       dockerfile: Dockerfile
     ports:
       - 8080:8080
@@ -30,12 +30,34 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./web_client/domesticapp:/home/app  
+      - /home/app/.next
+      - /home/app/node_modules
+
     ports:
       - 3000:3000
     environment:
       NODE_ENV: development  
     networks:
       - internal-network    
+
+  postgres:
+    image: postgres:13
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=domesticapp_user
+      - POSTGRES_PASSWORD=domesticapp_password
+      - POSTGRES_DB=domesticapp_db
+    volumes:
+      - .database/db:/var/lib/postgresql/data
+      #- .database/data/00-database.sql:/docker-entrypoint-initdb.d/00-database.sql
+      #- .database/data/01-records.sql:/docker-entrypoint-initdb.d/01-records.sql
+      #- .database/data/02-triggers.sql:/docker-entrypoint-initdb.d/02-triggers.sql
+      #- .database/data/03-functions.sql:/docker-entrypoint-initdb.d/03-functions.sql
+      #- .database/data/04-procedures.sql:/docker-entrypoint-initdb.d/04-procedures.sql  
+    networks:
+      - internal-network 
+
 
 networks:
   internal-network:
