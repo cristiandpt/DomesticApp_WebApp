@@ -148,24 +148,51 @@ web_server/go-server/vendor/
 /mobile/native_mobile/.externalNativeBuild
 /mobile/native_mobile/.cxx
 /mobile/native_mobile/local.properties
-//mobile/.idea
-
-/mobile/flutter_mobile/domesticapp_flutter/**/*.iml
-/mobile/flutter_mobile/domesticapp_flutter/.gradle
-/mobile/flutter_mobile/domesticapp_flutter/local\.properties
-/mobile/flutter_mobile/domesticapp_flutter/.idea/caches
-/mobile/flutter_mobile/domesticapp_flutter/.idea/libraries
-/mobile/flutter_mobile/domesticapp_flutter/.idea/modules.xml
-/mobile/flutter_mobile/domesticapp_flutter/.idea/workspace.xml
-/mobile/flutter_mobile/domesticapp_flutter/.idea/navEditor.xml
-/mobile/flutter_mobile/domesticapp_flutter/.idea/assetWizardSettings.xml
-/mobile/flutter_mobile/domesticapp_flutter/.DS_Store
-/mobile/flutter_mobile/domesticapp_flutter/build
-/mobile/flutter_mobile/domesticapp_flutter/captures
-/mobile/flutter_mobile/domesticapp_flutter/.externalNativeBuild
-/mobile/flutter_mobile/domesticapp_flutter/.cxx
-/mobile/flutter_mobile/domesticapp_flutter/local.properties
 
 web_server/rust-server/domestik_app/.vscode
 web_server/rust-server/domestik_app/.vscode/settings.json
+
+
+# Miscellaneous
+/mobile/flutter_mobile/*.class
+/mobile/flutter_mobile/*.log
+/mobile/flutter_mobile/*.pyc
+/mobile/flutter_mobile/*.swp
+/mobile/flutter_mobile/.DS_Store
+/mobile/flutter_mobile/.atom/
+/mobile/flutter_mobile/.buildlog/
+/mobile/flutter_mobile/.history
+/mobile/flutter_mobile/.svn/
+/mobile/flutter_mobile/migrate_working_dir/
+
+# IntelliJ related
+/mobile/flutter_mobile/*.iml
+/mobile/flutter_mobile/*.ipr
+/mobile/flutter_mobile/*.iws
+/mobile/flutter_mobile/.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+# Flutter/Dart/Pub related
+/mobile/flutter_mobile/**/doc/api/
+/mobile/flutter_mobile/**/ios/Flutter/.last_build_id
+/mobile/flutter_mobile/.dart_tool/
+/mobile/flutter_mobile/.flutter-plugins
+/mobile/flutter_mobile/.flutter-plugins-dependencies
+/mobile/flutter_mobile/.pub-cache/
+/mobile/flutter_mobile/.pub/
+/mobile/flutter_mobile/build/
+
+# Symbolication related
+/mobile/flutter_mobile/app.*.symbols
+
+# Obfuscation related
+/mobile/flutter_mobile/app.*.map.json
+
+# Android Studio will place build artifacts here
+/mobile/flutter_mobile//android/app/debug
+/mobile/flutter_mobile//android/app/profile
+/mobile/flutter_mobile//android/app/release
 
