@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.domestikapp.database.entity.Auth
-import com.domestikapp.database.entity.User
+
 
 @Dao
 interface AuthDao {
