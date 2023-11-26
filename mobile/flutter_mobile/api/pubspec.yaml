@@ -37,6 +37,9 @@ dependencies:
   domestikapp_domain:
     path: ../domain
 
+  injectable: ^2.3.2
+  get_it: ^7.6.4
+
 dev_dependencies:
 
   retrofit_generator: '>=7.0.0 <8.0.0'

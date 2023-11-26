@@ -41,7 +41,8 @@ dependencies:
   auto_mappr_annotation: ^2.1.0
   domestikapp_domain:
     path: ../domain
-
+  injectable: ^2.3.2
+  get_it: ^7.6.4
 
 dev_dependencies:
 
