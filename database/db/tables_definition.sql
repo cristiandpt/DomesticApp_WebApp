@@ -10,7 +10,7 @@ CREATE TABLE User (
 
 CREATE TABLE Address (
     address_loc VARCHAR(100),
-    user_phone VARCHAR(11) not NULL,
+    user_phone VARCHAR(11) NOT NULL,
     FOREIGN KEY (user_phone) REFERENCES User(user_phone),
     PRIMARY KEY (address_loc, user_phone)
 );
@@ -25,7 +25,7 @@ CREATE TABLE Worker (
 CREATE TABLE Rating (
     ratingId SERIAL PRIMARY KEY,
     rate FLOAT,
-    serviceId VARCHAR(255),
+    serviceId INT,
     FOREIGN KEY (serviceId) REFERENCES Service(serviceId)
 );
 
@@ -36,15 +36,15 @@ CREATE TABLE Job (
 
 CREATE TABLE Worker_rating (
     id SERIAL PRIMARY KEY,
-    user_phone VARCHAR(11) not NULL,
-    ratingId SERIAL,
+    user_phone VARCHAR(11) NOT NULL,
+    ratingId INT,
     FOREIGN KEY (user_phone) REFERENCES User(user_phone),
     FOREIGN KEY (ratingId) REFERENCES Rating(ratingId)
 );
 
 CREATE TABLE Worker_job (
-    user_phone VARCHAR(11) not NULL,
-    jobId SERIAL not NULL,
+    user_phone VARCHAR(11) NOT NULL,
+    jobId SERIAL NOT NULL,
     price DOUBLE,
     laborType VARCHAR(100),
     PRIMARY KEY (user_phone, jobId),
@@ -57,7 +57,7 @@ CREATE TABLE Notification (
     notificationDate DATE,
     notificationTime TIME,
     worker_phone VARCHAR(11),
-    serviceId SERIAL,
+    serviceId INT,
     FOREIGN KEY (worker_phone) REFERENCES Worker(phone),
     FOREIGN KEY (serviceId) REFERENCES Service(serviceId)
 );
@@ -68,7 +68,7 @@ CREATE TABLE Service (
     status VARCHAR(100),
     client_phone VARCHAR(11),
     worker_phone VARCHAR(11),
-    jobId SERIAL,
+    jobId INT,
     FOREIGN KEY (client_phone) REFERENCES User(user_phone),
     FOREIGN KEY (worker_phone) REFERENCES Worker(phone),
     FOREIGN KEY (jobId) REFERENCES Job(jobId)
@@ -77,14 +77,14 @@ CREATE TABLE Service (
 CREATE TABLE Invoice (
     invoiceId SERIAL PRIMARY KEY,
     total DOUBLE,
-    serviceId SERIAL,
+    serviceId INT,
     FOREIGN KEY (serviceId) REFERENCES Service(serviceId)
 );
 
 CREATE TABLE Payment (
     paymentId SERIAL PRIMARY KEY,
     paymentDate DATE,
-    invoiceId SERIAL,
+    invoiceId INT,
     client_phone VARCHAR(11),
     FOREIGN KEY (invoiceId) REFERENCES Invoice(invoiceId),
     FOREIGN KEY (client_phone) REFERENCES User(user_phone)
@@ -101,7 +101,7 @@ CREATE TABLE Payment_method (
     owner_name VARCHAR(100),
     card_number VARCHAR(100),
     expiration_date DATE,
-    client_phone VARCHAR(11) not NULL,
+    client_phone VARCHAR(11) NOT NULL,
     FOREIGN KEY (client_phone) REFERENCES User(user_phone)
 );
 
@@ -115,4 +115,4 @@ CREATE TABLE Login (
     access_token_expiration_date DATE,
     user_phone VARCHAR(11),
     FOREIGN KEY (user_phone) REFERENCES User(user_phone)
-); 
+);
