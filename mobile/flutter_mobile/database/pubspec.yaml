@@ -38,6 +38,7 @@ dependencies:
   drift: ^2.13.1
   logger: any  #for logging purpose
   json_annotation: ^4.8.1
+  auto_mappr_annotation: ^2.1.0
   domestikapp_domain:
     path: ../domain
 
@@ -48,6 +49,7 @@ dev_dependencies:
   build_runner: '>=2.3.0 <4.0.0'
   json_serializable: ^6.6.2
   analyzer: ^6.0.0
+  auto_mappr: ^2.2.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

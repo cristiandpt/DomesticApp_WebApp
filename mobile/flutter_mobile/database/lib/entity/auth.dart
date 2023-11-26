@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
+@DataClassName("AuthEntity")
 class Auth extends Table {
-  IntColumn get jwtToken => integer().autoIncrement()();
+  TextColumn get jwtToken => text()();
   TextColumn get refreshToken => text()();
 }

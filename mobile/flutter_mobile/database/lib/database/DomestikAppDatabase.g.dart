@@ -3,7 +3,7 @@
 part of 'DomestikAppDatabase.dart';
 
 // ignore_for_file: type=lint
-class $UserTable extends User with TableInfo<$UserTable, UserData> {
+class $UserTable extends User with TableInfo<$UserTable, UserEntity> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -43,7 +43,7 @@ class $UserTable extends User with TableInfo<$UserTable, UserData> {
   String get actualTableName => $name;
   static const String $name = 'user';
   @override
-  VerificationContext validateIntegrity(Insertable<UserData> instance,
+  VerificationContext validateIntegrity(Insertable<UserEntity> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -74,9 +74,9 @@ class $UserTable extends User with TableInfo<$UserTable, UserData> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  UserData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  UserEntity map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return UserData(
+    return UserEntity(
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       firstName: attachedDatabase.typeMapping
@@ -94,12 +94,12 @@ class $UserTable extends User with TableInfo<$UserTable, UserData> {
   }
 }
 
-class UserData extends DataClass implements Insertable<UserData> {
+class UserEntity extends DataClass implements Insertable<UserEntity> {
   final int id;
   final String firstName;
   final String lastName;
   final String address;
-  const UserData(
+  const UserEntity(
       {required this.id,
       required this.firstName,
       required this.lastName,
@@ -123,10 +123,10 @@ class UserData extends DataClass implements Insertable<UserData> {
     );
   }
 
-  factory UserData.fromJson(Map<String, dynamic> json,
+  factory UserEntity.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return UserData(
+    return UserEntity(
       id: serializer.fromJson<int>(json['id']),
       firstName: serializer.fromJson<String>(json['firstName']),
       lastName: serializer.fromJson<String>(json['lastName']),
@@ -144,9 +144,9 @@ class UserData extends DataClass implements Insertable<UserData> {
     };
   }
 
-  UserData copyWith(
+  UserEntity copyWith(
           {int? id, String? firstName, String? lastName, String? address}) =>
-      UserData(
+      UserEntity(
         id: id ?? this.id,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
@@ -154,7 +154,7 @@ class UserData extends DataClass implements Insertable<UserData> {
       );
   @override
   String toString() {
-    return (StringBuffer('UserData(')
+    return (StringBuffer('UserEntity(')
           ..write('id: $id, ')
           ..write('firstName: $firstName, ')
           ..write('lastName: $lastName, ')
@@ -168,14 +168,14 @@ class UserData extends DataClass implements Insertable<UserData> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is UserData &&
+      (other is UserEntity &&
           other.id == this.id &&
           other.firstName == this.firstName &&
           other.lastName == this.lastName &&
           other.address == this.address);
 }
 
-class UserCompanion extends UpdateCompanion<UserData> {
+class UserCompanion extends UpdateCompanion<UserEntity> {
   final Value<int> id;
   final Value<String> firstName;
   final Value<String> lastName;
@@ -194,7 +194,7 @@ class UserCompanion extends UpdateCompanion<UserData> {
   })  : firstName = Value(firstName),
         lastName = Value(lastName),
         address = Value(address);
-  static Insertable<UserData> custom({
+  static Insertable<UserEntity> custom({
     Expression<int>? id,
     Expression<String>? firstName,
     Expression<String>? lastName,
@@ -251,7 +251,7 @@ class UserCompanion extends UpdateCompanion<UserData> {
   }
 }
 
-class $AuthTable extends Auth with TableInfo<$AuthTable, AuthData> {
+class $AuthTable extends Auth with TableInfo<$AuthTable, AuthEntity> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -259,13 +259,9 @@ class $AuthTable extends Auth with TableInfo<$AuthTable, AuthData> {
   static const VerificationMeta _jwtTokenMeta =
       const VerificationMeta('jwtToken');
   @override
-  late final GeneratedColumn<int> jwtToken = GeneratedColumn<int>(
+  late final GeneratedColumn<String> jwtToken = GeneratedColumn<String>(
       'jwt_token', aliasedName, false,
-      hasAutoIncrement: true,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _refreshTokenMeta =
       const VerificationMeta('refreshToken');
   @override
@@ -280,13 +276,15 @@ class $AuthTable extends Auth with TableInfo<$AuthTable, AuthData> {
   String get actualTableName => $name;
   static const String $name = 'auth';
   @override
-  VerificationContext validateIntegrity(Insertable<AuthData> instance,
+  VerificationContext validateIntegrity(Insertable<AuthEntity> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('jwt_token')) {
       context.handle(_jwtTokenMeta,
           jwtToken.isAcceptableOrUnknown(data['jwt_token']!, _jwtTokenMeta));
+    } else if (isInserting) {
+      context.missing(_jwtTokenMeta);
     }
     if (data.containsKey('refresh_token')) {
       context.handle(
@@ -300,13 +298,13 @@ class $AuthTable extends Auth with TableInfo<$AuthTable, AuthData> {
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {jwtToken};
+  Set<GeneratedColumn> get $primaryKey => const {};
   @override
-  AuthData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  AuthEntity map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return AuthData(
+    return AuthEntity(
       jwtToken: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}jwt_token'])!,
+          .read(DriftSqlType.string, data['${effectivePrefix}jwt_token'])!,
       refreshToken: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}refresh_token'])!,
     );
@@ -318,14 +316,14 @@ class $AuthTable extends Auth with TableInfo<$AuthTable, AuthData> {
   }
 }
 
-class AuthData extends DataClass implements Insertable<AuthData> {
-  final int jwtToken;
+class AuthEntity extends DataClass implements Insertable<AuthEntity> {
+  final String jwtToken;
   final String refreshToken;
-  const AuthData({required this.jwtToken, required this.refreshToken});
+  const AuthEntity({required this.jwtToken, required this.refreshToken});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    map['jwt_token'] = Variable<int>(jwtToken);
+    map['jwt_token'] = Variable<String>(jwtToken);
     map['refresh_token'] = Variable<String>(refreshToken);
     return map;
   }
@@ -337,11 +335,11 @@ class AuthData extends DataClass implements Insertable<AuthData> {
     );
   }
 
-  factory AuthData.fromJson(Map<String, dynamic> json,
+  factory AuthEntity.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return AuthData(
-      jwtToken: serializer.fromJson<int>(json['jwtToken']),
+    return AuthEntity(
+      jwtToken: serializer.fromJson<String>(json['jwtToken']),
       refreshToken: serializer.fromJson<String>(json['refreshToken']),
     );
   }
@@ -349,18 +347,18 @@ class AuthData extends DataClass implements Insertable<AuthData> {
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
-      'jwtToken': serializer.toJson<int>(jwtToken),
+      'jwtToken': serializer.toJson<String>(jwtToken),
       'refreshToken': serializer.toJson<String>(refreshToken),
     };
   }
 
-  AuthData copyWith({int? jwtToken, String? refreshToken}) => AuthData(
+  AuthEntity copyWith({String? jwtToken, String? refreshToken}) => AuthEntity(
         jwtToken: jwtToken ?? this.jwtToken,
         refreshToken: refreshToken ?? this.refreshToken,
       );
   @override
   String toString() {
-    return (StringBuffer('AuthData(')
+    return (StringBuffer('AuthEntity(')
           ..write('jwtToken: $jwtToken, ')
           ..write('refreshToken: $refreshToken')
           ..write(')'))
@@ -372,36 +370,46 @@ class AuthData extends DataClass implements Insertable<AuthData> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is AuthData &&
+      (other is AuthEntity &&
           other.jwtToken == this.jwtToken &&
           other.refreshToken == this.refreshToken);
 }
 
-class AuthCompanion extends UpdateCompanion<AuthData> {
-  final Value<int> jwtToken;
+class AuthCompanion extends UpdateCompanion<AuthEntity> {
+  final Value<String> jwtToken;
   final Value<String> refreshToken;
+  final Value<int> rowid;
   const AuthCompanion({
     this.jwtToken = const Value.absent(),
     this.refreshToken = const Value.absent(),
+    this.rowid = const Value.absent(),
   });
   AuthCompanion.insert({
-    this.jwtToken = const Value.absent(),
+    required String jwtToken,
     required String refreshToken,
-  }) : refreshToken = Value(refreshToken);
-  static Insertable<AuthData> custom({
-    Expression<int>? jwtToken,
+    this.rowid = const Value.absent(),
+  })  : jwtToken = Value(jwtToken),
+        refreshToken = Value(refreshToken);
+  static Insertable<AuthEntity> custom({
+    Expression<String>? jwtToken,
     Expression<String>? refreshToken,
+    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (jwtToken != null) 'jwt_token': jwtToken,
       if (refreshToken != null) 'refresh_token': refreshToken,
+      if (rowid != null) 'rowid': rowid,
     });
   }
 
-  AuthCompanion copyWith({Value<int>? jwtToken, Value<String>? refreshToken}) {
+  AuthCompanion copyWith(
+      {Value<String>? jwtToken,
+      Value<String>? refreshToken,
+      Value<int>? rowid}) {
     return AuthCompanion(
       jwtToken: jwtToken ?? this.jwtToken,
       refreshToken: refreshToken ?? this.refreshToken,
+      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -409,10 +417,13 @@ class AuthCompanion extends UpdateCompanion<AuthData> {
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     if (jwtToken.present) {
-      map['jwt_token'] = Variable<int>(jwtToken.value);
+      map['jwt_token'] = Variable<String>(jwtToken.value);
     }
     if (refreshToken.present) {
       map['refresh_token'] = Variable<String>(refreshToken.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
     }
     return map;
   }
@@ -421,7 +432,8 @@ class AuthCompanion extends UpdateCompanion<AuthData> {
   String toString() {
     return (StringBuffer('AuthCompanion(')
           ..write('jwtToken: $jwtToken, ')
-          ..write('refreshToken: $refreshToken')
+          ..write('refreshToken: $refreshToken, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }
