@@ -439,8 +439,8 @@ class AuthCompanion extends UpdateCompanion<AuthEntity> {
   }
 }
 
-abstract class _$Database extends GeneratedDatabase {
-  _$Database(QueryExecutor e) : super(e);
+abstract class _$DomestikAppDatabase extends GeneratedDatabase {
+  _$DomestikAppDatabase(QueryExecutor e) : super(e);
   late final $UserTable user = $UserTable(this);
   late final $AuthTable auth = $AuthTable(this);
   @override

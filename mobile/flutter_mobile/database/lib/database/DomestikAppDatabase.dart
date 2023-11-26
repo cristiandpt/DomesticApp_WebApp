@@ -8,8 +8,8 @@ part 'DomestikAppDatabase.g.dart';
 @DriftDatabase(tables: [
   User, Auth
 ])
-class Database extends _$Database {
-  Database(QueryExecutor e) : super(e);
+class DomestikAppDatabase extends _$DomestikAppDatabase {
+  DomestikAppDatabase(QueryExecutor e) : super(e);
 
   @override
   int get schemaVersion => 2;
