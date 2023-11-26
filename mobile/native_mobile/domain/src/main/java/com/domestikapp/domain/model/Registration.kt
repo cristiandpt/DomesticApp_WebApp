@@ -1,5 +1,6 @@
 package com.domestikapp.domain.model
 
 data class Registration(
-    val name: String
+    val firstName: String,
+    val lastName: String
 )
