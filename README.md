@@ -2,7 +2,7 @@
 
 ## Migraciones
  
- Para correr las migraciones, tienes que seguir los siguientes pasos:
+ Para inicializar las migraciones, tienes que seguir los siguientes pasos:
 
 1. Buildear y correr los contenedores:
 
