@@ -2,24 +2,24 @@
 
 ## Migraciones
  
- Para inicializar las migraciones, tienes que seguir los siguientes pasos:
+ In order to initialize the migrations, follow the steps below.
 
-1. Buildear y levantar los contenedores:
+1. Build and get up the containers:
 
 ```bash
 docker compose build rust-app postgres
 docker compose up rust-app postgres
 ```
 
-2. Entrar al contenedor de "rust-app":
+2. Get into "rust-app" container:
     
-- Listar contenedores:
+- List containers:
     
 ```bash
 docker ps -a 
 ```
 
-- Ubicar el ID del contenedor con la imagen "domesticapp_webapp-rust-app"
+- Identify "domesticapp_webapp-rust-app" container ID
 
 ```
 CONTAINER ID   IMAGE                         COMMAND                  CREATED             STATUS             PORTS                                       NAMES
@@ -27,17 +27,17 @@ d66f13883928   postgres:13                   "docker-entrypoint.s…"   About an
 715c08c04aed   domesticapp_webapp-rust-app   "cargo run"              About an hour ago   Up About an hour   0.0.0.0:8081->8081/tcp, :::8081->8081/tcp   domesticapp_webapp-rust-app-1
 ```
 
-- Acceder al contenedor correspondiente a la imagen "domesticapp_webapp-rust-app":
+- Access "domesticapp_webapp-rust-app" container:
 
 ```bash
 docker exec -it <CONTAINER-ID-RUST> bash
 ```
 
-3. Ejecutar el siguiente comando:
-- **OJO: Este script solo se va a ejecutar una vez.**
+3. Execute the following script:
+- **IMPORTANT NOTE: THIS SCRIPT IS ONLY GOING TO BE EXECUTED ONCE.**
 
 ```bash
 ./populate_migrations.sh
 ```
 
-Con eso ya estaría realizada la migración de las tablas para la base de datos en el contenedor de postgres
+At this point the initial migration setup from the rust backend to the postgres container is finished, and thus the database tables can be accessed from the postgres docker container.
