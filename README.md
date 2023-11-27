@@ -30,7 +30,7 @@ d66f13883928   postgres:13                   "docker-entrypoint.s…"   About an
 - Acceder al contenedor correspondiente a la imagen "domesticapp_webapp-rust-app":
 
 ```bash
-docker exec -it 715 bash
+docker exec -it <CONTAINER-ID-RUST> bash
 ```
 
 3. Ejecutar el siguiente comando:
