@@ -1,7 +1,7 @@
 # DomesticApp
 
 ## Migraciones
-
+ 
  Para correr las migraciones, tienes que seguir los siguientes pasos:
 
 1. Buildear y correr los contenedores:
@@ -34,7 +34,7 @@ docker exec -it 715 bash
 ```
 
 3. Ejecutar el siguiente comando:
-
+- **OJO: Este script solo se va a ejecutar una vez.**
 
 ```bash
 ./populate_migrations.sh
