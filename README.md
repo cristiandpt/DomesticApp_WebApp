@@ -4,7 +4,7 @@
  
  Para inicializar las migraciones, tienes que seguir los siguientes pasos:
 
-1. Buildear y correr los contenedores:
+1. Buildear y levantar los contenedores:
 
 ```bash
 docker compose build rust-app postgres
