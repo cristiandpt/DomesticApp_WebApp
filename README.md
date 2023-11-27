@@ -1,6 +1,6 @@
 # DomesticApp
 
-## Migraciones
+## Migrations
  
  In order to initialize the migrations, follow the steps below.
 
