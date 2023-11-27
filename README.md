@@ -34,10 +34,15 @@ docker exec -it <CONTAINER-ID-RUST> bash
 ```
 
 3. Execute the following script:
-- **IMPORTANT NOTE: THIS SCRIPT IS ONLY GOING TO BE EXECUTED ONCE.**
+<p align="center">
+  <strong>IMPORTANT NOTE: THIS SCRIPT IS GOING TO BE EXECUTED ONLY ONCE.</strong>
+</p>
 
 ```bash
 ./populate_migrations.sh
 ```
+<p align="center">
+  <strong>IMPORTANT NOTE: THIS SCRIPT IS GOING TO BE EXECUTED ONLY ONCE.</strong>
+</p>
 
 At this point the initial migration setup from the rust backend to the postgres container is finished, and thus the database tables can be accessed from the postgres docker container.
