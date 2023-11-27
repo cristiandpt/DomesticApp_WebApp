@@ -4,6 +4,8 @@ diesel setup
 
 diesel migration generate data 
 
+echo $DATABASE_URL > .env
+
 # populating up.sql
 TIMESTAMP_DATA=$(ls migrations | grep data)
 cat tables_definition.sql > "migrations/${TIMESTAMP_DATA}/up.sql"
