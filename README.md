@@ -2,7 +2,7 @@
 
 ## Migrations
  
- In order to initialize the migrations, follow the steps below.
+ In order to initialize migrations, follow the steps below.
 
 1. Build and get up the containers:
 
