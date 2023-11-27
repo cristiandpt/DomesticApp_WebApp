@@ -12,6 +12,8 @@ COPY ./domestik_app/Cargo.toml  ./
 COPY ./domestik_app .
 # Build the application  --release
 RUN cargo build
+# Install Diese CLI
+RUN cargo install diesel_cli --no-default-features --features postgres
 # Expose the port on which the server will listen
 EXPOSE 8081
 # Specify the command to run when the container starts "--release"
