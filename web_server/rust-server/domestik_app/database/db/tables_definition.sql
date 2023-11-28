@@ -1,3 +1,4 @@
+ 
 CREATE TABLE User_info (
     user_phone VARCHAR(11) PRIMARY KEY,
     name VARCHAR(50),
