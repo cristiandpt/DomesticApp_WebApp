@@ -1,5 +1,5 @@
 # DomesticApp
-
+**YA NO ES NECESARIO HACER ESTO**
 ## Migrations
  
  In order to initialize migrations, follow the steps down below.
