@@ -75,6 +75,7 @@ CREATE TABLE Invoice (
     FOREIGN KEY (serviceId) REFERENCES Service(serviceId)
 );
 
+
 CREATE TABLE Notification (
     notificationId SERIAL PRIMARY KEY,
     notificationDate DATE,
