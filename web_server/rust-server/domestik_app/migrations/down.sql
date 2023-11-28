@@ -1,0 +1,14 @@
+DROP TABLE User_info;
+DROP TABLE Address;
+DROP TABLE Worker;
+DROP TABLE Job;
+DROP TABLE Worker_job;
+DROP TABLE Service;
+DROP TABLE Rating;
+DROP TABLE Worker_rating;
+DROP TABLE Invoice;
+DROP TABLE Notification;
+DROP TABLE Payment;
+DROP TABLE Client;
+DROP TABLE Payment_method;
+DROP TABLE Login;
