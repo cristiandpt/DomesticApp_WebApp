@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "DATABASE_URL=${DATABASE_URL}"> .env
+echo "DATABASE_URL=${DATABASE_URL}" > .env
 
 diesel setup
 
