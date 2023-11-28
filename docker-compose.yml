@@ -23,6 +23,8 @@ services:
       - ./web_server/rust-server/domestik_app:/home/app/rust_domestik_app
     networks:
       - internal-network
+    depends_on:
+      - postgres
 
   frontend-app:
     build:
