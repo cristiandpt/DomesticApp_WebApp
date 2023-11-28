@@ -10,6 +10,8 @@ COPY ./domestik_app/Cargo.toml  ./
 #RUN cargo build
 # Copy the source code to the container
 COPY ./domestik_app .
+# Copy database scheme
+COPY ../../database/db/tables_definition.sql .
 # Build the application  --release
 RUN cargo build
 # Install Diese CLI
