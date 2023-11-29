@@ -15,7 +15,7 @@ services:
       dockerfile: Dockerfile
     environment: 
       - JWT_TOKEN=jwt_token
-      - DATABASE_URL=string_connection
+      - DATABASE_URL=postgres://domesticapp_user:domesticapp_password@postgres:5432/domesticapp_db
       - DB_URL=postgres://username:password@localhost:5433/domesticapp_db
     ports:
       - 8081:8081
@@ -23,6 +23,8 @@ services:
       - ./web_server/rust-server/domestik_app:/home/app/rust_domestik_app
     networks:
       - internal-network
+    depends_on:
+      - postgres
 
   frontend-app:
     build:

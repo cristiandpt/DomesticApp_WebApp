@@ -129,6 +129,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+/.database/*
+
 web_server/rust-server/domestik_app/target
 
 web_server/go-server/vendor/
