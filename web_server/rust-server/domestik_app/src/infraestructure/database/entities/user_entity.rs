@@ -4,7 +4,7 @@ use chrono::NaiveDate;
 
 #[derive(Queryable, Insertable, Clone, Debug)]
 #[table_name="user_info"]
-pub struct userInfo {
+pub struct UserInfo {
     pub user_phone: String,
     #[diesel(serialize_as = Option<String>)]
     pub name: Option<String>,
