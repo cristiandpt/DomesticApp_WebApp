@@ -1,8 +1,8 @@
 use crate::schema::job;
 
-#[derive(Queryable, Identifiable, Selectable)]
-#[table_name="job"]
+#[derive(Queryable, Clone)]
 pub struct Job {
     pub jobid: i32,
-    pub name: String
+    #[diesel(serialize_as = Option<String>)]
+    pub name: Option<String>
 }       

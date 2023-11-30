@@ -16,7 +16,7 @@ use std::env;
 type PgPool = Pool<ConnectionManager<PgConnection>>;
 
 pub struct DbConnection {
-    pub db_connection: PgPool,
+    pub db_connection: PgPool
 }
 
 

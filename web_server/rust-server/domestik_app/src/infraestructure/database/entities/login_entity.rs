@@ -1,17 +1,24 @@
 use crate::schema::login;
-use chrono::NaiveDateTime;
+use chrono::NaiveDate;
 
 
-#[derive(Queryable, Identifiable, Insertable)]
-#[table_name="user_info"]
+#[derive(Queryable, Insertable, Clone, Debug)]
+#[table_name="login"]
 pub struct Login {
     
     pub loginid: i32,
-    pub username: String,
-    pub password: String,
-    pub access_token: String,
-    pub refresh_token: String,
-    pub refresh_token_expiration_date: String,
-    pub access_token_expiration_date: String,
-    pub user_phone: String,
+    #[diesel(serialize_as = Option<String>)]
+    pub username: Option<String>,
+    #[diesel(serialize_as = Option<String>)]
+    pub password: Option<String>,
+    #[diesel(serialize_as = Option<String>)]
+    pub access_token: Option<String>,
+    #[diesel(serialize_as = Option<String>)]
+    pub refresh_token: Option<String>,
+    #[diesel(serialize_as = Option<NaiveDate>)]
+    pub refresh_token_expiration_date: Option<NaiveDate>,
+    #[diesel(serialize_as = Option<NaiveDate>)]
+    pub access_token_expiration_date: Option<NaiveDate>,
+    #[diesel(serialize_as = Option<NaiveDate>)]
+    pub user_phone: Option<String>
 }

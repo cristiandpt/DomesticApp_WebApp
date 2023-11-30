@@ -23,6 +23,6 @@ CMD ["cargo", "run"]
 # Copy the script to the container
 # COPY ./domestik_app/scripts/populate_migrations.sh ./scripts
 # Entrypoint
-ENTRYPOINT ["bash", "populate_migrations.sh"]
+ENTRYPOINT ["bash", "populate_migrations.sh", "&&", "cargo", "run"]
 #For do the Rust project without install locally it.
 ### docker run --rm -v $(pwd):/usr/src/my_rust_project -w /usr/src/my_rust_project rust cargo new --bin my_rust_project

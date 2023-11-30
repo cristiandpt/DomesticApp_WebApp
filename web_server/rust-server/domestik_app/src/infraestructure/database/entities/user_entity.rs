@@ -1,15 +1,21 @@
 use crate::schema::user_info;
-use chrono::NaiveDateTime;
+use diesel::Insertable;
+use chrono::NaiveDate;
 
-
-#[derive(Queryable, Identifiable, Insertable)]
+#[derive(Queryable, Insertable, Clone, Debug)]
 #[table_name="user_info"]
-pub struct Item {
+pub struct userInfo {
     pub user_phone: String,
-    pub name: String,
-    pub lastname: String,
-    pub email: String,
-    pub address: String,
-    pub birth_date: Option<NaiveDateTime>,
-    pub user_type: String
+    #[diesel(serialize_as = Option<String>)]
+    pub name: Option<String>,
+    #[diesel(serialize_as = Option<String>)]
+    pub lastname: Option<String>,
+    #[diesel(serialize_as = Option<String>)]
+    pub email: Option<String>,
+    #[diesel(serialize_as = Option<String>)]
+    pub address: Option<String>,
+    #[diesel(serialize_as = Option<NaiveDate>)]
+    pub birth_date: Option<NaiveDate>,
+    #[diesel(serialize_as = Option<String>)]
+    pub user_type: Option<String>
 }
