@@ -1,8 +1,8 @@
 CREATE TABLE User_info (
     user_phone VARCHAR(11) PRIMARY KEY,
-    name VARCHAR(50) NOT NULL CHECK (LENGTH(name) <= 50),
-    lastname VARCHAR(50) NOT NULL CHECK (LENGTH(lastname) <= 50),
-    email VARCHAR(100) NOT NULL CHECK (LENGTH(email) <= 100),
+    name VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
     address VARCHAR(100),
     birth_date DATE,
     user_type VARCHAR(100)
@@ -29,20 +29,22 @@ CREATE TABLE Job (
 
 CREATE TABLE Job_Type (
     id SERIAL PRIMARY KEY,
-    hour_periodicity TIME,
+    hour_periodicity INT,
     periodicity_description VARCHAR(100)
 );
 
 CREATE TABLE Worker_job (
     user_phone VARCHAR(11) NOT NULL,
     jobId SERIAL NOT NULL,
-    price DOUBLE PRECISION CONSTRAINT chk_positive_price CHECK (price >= 0), -- Adding CHECK constraint for positive price
+    price DOUBLE PRECISION CONSTRAINT chk_positive_price CHECK (price >= 0),
     laborType VARCHAR(100),
     job_type_id INT,
     PRIMARY KEY (user_phone, jobId),
     CONSTRAINT fk_worker_job_user_info FOREIGN KEY (user_phone) REFERENCES User_info(user_phone),
     CONSTRAINT fk_worker_job_job FOREIGN KEY (jobId) REFERENCES Job(jobId),
-    CONSTRAINT fk_worker_job_job_type FOREIGN KEY (job_type_id) REFERENCES Job_Type(id)
+    CONSTRAINT fk_worker_job_job_type FOREIGN KEY (job_type_id) REFERENCES Job_Type(id),
+    CONSTRAINT chk_positive_rate CHECK (rate >= 0 AND rate <= 5), -- Adding name to the rate constraint
+    CONSTRAINT chk_positive_cvv CHECK (cvv >= 0) -- Adding name to the cvv constraint
 );
 
 CREATE TABLE Service (
@@ -74,7 +76,7 @@ CREATE TABLE Worker_rating (
 
 CREATE TABLE Invoice (
     invoiceId SERIAL PRIMARY KEY,
-    total DOUBLE PRECISION CONSTRAINT chk_positive_total CHECK (total >= 0), -- Adding CHECK constraint for positive total
+    total DOUBLE PRECISION CONSTRAINT chk_positive_total CHECK (total >= 0),
     serviceId INT,
     CONSTRAINT fk_invoice_service FOREIGN KEY (serviceId) REFERENCES Service(serviceId)
 );
@@ -124,6 +126,7 @@ CREATE TABLE Login (
     user_phone VARCHAR(11),
     CONSTRAINT fk_login_user_info FOREIGN KEY (user_phone) REFERENCES User_info(user_phone)
 );
+
 
 
 
