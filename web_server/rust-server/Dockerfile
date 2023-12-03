@@ -22,7 +22,7 @@ EXPOSE 8081
 CMD ["cargo", "run"]
 # Copy the script to the container
 # COPY ./domestik_app/scripts/populate_migrations.sh ./scripts
-# Entrypoint
-ENTRYPOINT ["bash", "populate_migrations.sh"]
+# Entrypoint   Seems like it doesn't work after the script sh, the "cargo run" is not being launched
+ENTRYPOINT ["bash", "populate_migrations.sh", "&&", "cargo", "run"] 
 #For do the Rust project without install locally it.
 ### docker run --rm -v $(pwd):/usr/src/my_rust_project -w /usr/src/my_rust_project rust cargo new --bin my_rust_project
