@@ -1,13 +1,10 @@
 #[allow(unused_imports)]
 use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
+
 use actix_service::Service;
 
 use dotenv::dotenv;
 
-#[macro_use] extern crate diesel;
-extern crate dotenv;
-
-mod schema;
 mod views;
 mod utils;
 mod domain;
