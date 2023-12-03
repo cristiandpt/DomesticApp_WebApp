@@ -6,7 +6,7 @@ TIMESTAMP_DATA=$(ls migrations | grep data)
 if [ -d "migrations/${TIMESTAMP_DATA}/" ]; then
  # If there's no initial data folder
  echo "Directory exists, so diesel setup is not performed" 
- cargo run
+ tail -f /dev/null
 else 
   diesel setup
   diesel migration generate data 
@@ -19,8 +19,8 @@ else
   
   # migrate tables to postgres container
   diesel migration run
+  # Keep the container running
   tail -f /dev/null
 fi
-
 
 
