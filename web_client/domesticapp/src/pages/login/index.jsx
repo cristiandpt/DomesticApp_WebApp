@@ -1,63 +1,78 @@
 import Link from "next/link";
 const Login = () => {
   return (
-    <section className="h-screen grid place-content-center">
-      <div className="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <div className="px-6 py-4">
-          <div className="flex justify-center mx-auto">
-            <img
-              className="w-auto h-7 sm:h-8"
-              src="https://merakiui.com/images/logo.svg"
-              alt="App logo"
+    <section className="bg-white dark:bg-gray-900">
+      <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
+        <form className="w-full max-w-md">
+          <img
+            className="w-auto h-7 sm:h-8"
+            src="https://merakiui.com/images/logo.svg"
+            alt="App logo"
+          />
+          <h1 className="mt-3 text-2xl font-semibold text-gray-800 capitalize sm:text-3xl dark:text-white">
+            Log in
+          </h1>
+          <div className="relative flex items-center mt-8">
+            <span className="absolute">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+            </span>
+            <input
+              type="email"
+              className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              placeholder="Email address"
             />
           </div>
-          <h3 className="mt-3 text-xl font-medium text-center text-gray-600 dark:text-gray-200">
-            Welcome Back
-          </h3>
-          <p className="mt-1 text-center text-gray-500 dark:text-gray-400">
-            Login into your account
-          </p>
-          <form>
-            <div className="w-full mt-4">
-              <input
-                className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                type="email"
-                placeholder="Email Address"
-                aria-label="Email Address"
-              />
-            </div>
-            <div className="w-full mt-4">
-              <input
-                className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                type="password"
-                placeholder="Password"
-                aria-label="Password"
-              />
-            </div>
-            <div className="flex items-center justify-between mt-4">
-              <a
-                href="#"
-                className="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500"
+          <div className="relative flex items-center mt-4">
+            <span className="absolute">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
               >
-                Forgot Password?
-              </a>
-              <button className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                Log In
-              </button>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
+              </svg>
+            </span>
+            <input
+              type="password"
+              className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              placeholder="Password"
+            />
+          </div>
+          <div className="mt-6">
+            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+              Sign in
+            </button>
+
+            <div className="mt-6 text-center ">
+              <Link
+                href="/sign-up"
+                className="text-sm text-blue-500 hover:underline dark:text-blue-400"
+              >
+                Don’t have an account yet? Sign up
+              </Link>
             </div>
-          </form>
-        </div>
-        <div className="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-gray-700">
-          <span className="text-sm text-gray-600 dark:text-gray-200">
-            Don't have an account yet?{" "}
-          </span>
-          <Link
-            href="/sign-up"
-            className="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline"
-          >
-            Register
-          </Link>
-        </div>
+          </div>
+        </form>
       </div>
     </section>
   );

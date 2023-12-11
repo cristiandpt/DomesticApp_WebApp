@@ -1,3 +1,4 @@
+import Button from "@mui/material/Button";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import { useState } from "react";
@@ -93,6 +94,7 @@ export default function Home() {
                 >
                   Store
                 </a>
+                <Button variant="contained">Hello world</Button>
                 <Link
                   className="px-8 py-2.5 text-white lg:text-[#475F45] lg:hover:bg-[#475F45] lg:hover:text-white duration-300 transition-colors font-medium lg:mx-4 border-2 lg:border-[#475F45] border-white"
                   href="/login"
@@ -147,7 +149,7 @@ export default function Home() {
               <img
                 className="object-cover w-full lg:w-1/2 lg:mx-6 h-72 lg:h-96"
                 src="https://images.unsplash.com/photo-1598901847919-b95dd0fabbb6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-                alt
+                alt="Side image"
               />
               <div className="mt-8 lg:w-1/2 lg:mx-6 lg:mt-0">
                 <h3 className="font-serif text-2xl text-white capitalize md:text-4xl lg:text-5xl">
@@ -170,7 +172,7 @@ export default function Home() {
             <img
               className="order-1 object-cover lg:order-2 w-ful h-72 lg:h-96 lg:mt-12"
               src="https://images.unsplash.com/photo-1610462275440-4ea0976f46f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-              alt
+              alt="Side image"
             />
           </div>
         </section>
@@ -183,7 +185,7 @@ export default function Home() {
               <img
                 className="object-cover w-full h-96"
                 src="https://images.unsplash.com/photo-1626838524909-7c584c2266f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                alt
+                alt="Side image"
               />
               <h2 className="mt-6 font-serif text-3xl font-medium text-gray-700">
                 Plants Around Us
@@ -200,7 +202,7 @@ export default function Home() {
                 <img
                   className="object-cover w-full h-56 md:h-48 md:mx-4 md:w-80 shrink-0"
                   src="https://images.unsplash.com/photo-1556426356-0fdc8b663467?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1498&q=80"
-                  alt
+                  alt="Side image"
                 />
                 <div className="mt-6 md:mx-4 md:mt-0">
                   <h2 className="font-serif text-2xl font-medium text-gray-700 ">
@@ -217,7 +219,7 @@ export default function Home() {
                 <img
                   className="object-cover w-full h-56 md:h-48 md:mx-4 md:w-80 shrink-0"
                   src="https://images.unsplash.com/photo-1583470790878-4f4f3811a01f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80"
-                  alt
+                  alt="Side image"
                 />
                 <div className="mt-6 md:mx-4 md:mt-0">
                   <h2 className="font-serif text-2xl font-medium text-gray-700 ">
@@ -234,7 +236,7 @@ export default function Home() {
                 <img
                   className="object-cover w-full h-56 md:h-48 md:mx-4 md:w-80 shrink-0"
                   src="https://images.unsplash.com/photo-1638790491374-a2affccd8c8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                  alt
+                  alt="Side image"
                 />
                 <div className="mt-6 md:mx-4 md:mt-0">
                   <h2 className="font-serif text-2xl font-medium text-gray-700 ">
