@@ -1,4 +1,4 @@
-CREATE TABLE User_info (
+CREATE TABLE user_info (
     user_phone VARCHAR(11) PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
@@ -8,107 +8,107 @@ CREATE TABLE User_info (
     user_type VARCHAR(100)
 );
 
-CREATE TABLE Client (
+CREATE TABLE client (
     phone VARCHAR(11) PRIMARY KEY,
     services_url VARCHAR(255)
 );
 
-CREATE TABLE Address (
+CREATE TABLE address (
     address_loc VARCHAR(100),
     worker_phone VARCHAR(11) NOT NULL,
-    CONSTRAINT fk_address_worker FOREIGN KEY (worker_phone) REFERENCES Worker(phone),
+    CONSTRAINT fk_address_worker FOREIGN KEY (worker_phone) REFERENCES worker(phone),
     PRIMARY KEY (address_loc, worker_phone)
 );
 
-CREATE TABLE Worker (
+CREATE TABLE worker (
     phone VARCHAR(11) PRIMARY KEY,
     cc_url VARCHAR(255),
     available BOOLEAN,
     pfp_url VARCHAR(255)
 );
 
-CREATE TABLE Job (
-    jobId SERIAL PRIMARY KEY,
+CREATE TABLE job (
+    job_id SERIAL PRIMARY KEY,
     name VARCHAR(50)
 );
 
-CREATE TABLE Job_Type (
+CREATE TABLE job_type (
     id SERIAL PRIMARY KEY,
     hour_periodicity TIME,
     periodicity_description VARCHAR(100)
 );
 
-CREATE TABLE Worker_job (
+CREATE TABLE worker_job (
     worker_phone VARCHAR(11) NOT NULL,
-    jobId SERIAL NOT NULL,
+    job_id SERIAL NOT NULL,
     price DOUBLE PRECISION CONSTRAINT chk_positive_price CHECK (price >= 0),
-    laborType VARCHAR(100),
+    labor_type VARCHAR(100),
     job_type_id INT NOT NULL,
-    PRIMARY KEY (worker_phone, jobId),
-    CONSTRAINT fk_worker_job_worker FOREIGN KEY (worker_phone) REFERENCES Worker(phone),
-    CONSTRAINT fk_worker_job_job FOREIGN KEY (jobId) REFERENCES Job(jobId),
-    CONSTRAINT fk_worker_job_job_type FOREIGN KEY (job_type_id) REFERENCES Job_Type(id)
+    PRIMARY KEY (worker_phone, job_id),
+    CONSTRAINT fk_worker_job_worker FOREIGN KEY (worker_phone) REFERENCES worker(phone),
+    CONSTRAINT fk_worker_job_job FOREIGN KEY (job_id) REFERENCES job(job_id),
+    CONSTRAINT fk_worker_job_job_type FOREIGN KEY (job_type_id) REFERENCES job_type(id)
 );
 
-CREATE TABLE Service (
-    serviceId SERIAL PRIMARY KEY,
+CREATE TABLE service (
+    service_id SERIAL PRIMARY KEY,
     description VARCHAR(100),
     status VARCHAR(100),
     client_phone VARCHAR(11) NOT NULL,
     worker_phone VARCHAR(11) NOT NULL,
-    jobId INT NOT NULL,
-    CONSTRAINT fk_service_client FOREIGN KEY (client_phone) REFERENCES Client(phone),
-    CONSTRAINT fk_service_worker FOREIGN KEY (worker_phone) REFERENCES Worker(phone),
-    CONSTRAINT fk_service_job FOREIGN KEY (jobId) REFERENCES Job(jobId)
+    job_id INT NOT NULL,
+    CONSTRAINT fk_service_client FOREIGN KEY (client_phone) REFERENCES client(phone),
+    CONSTRAINT fk_service_worker FOREIGN KEY (worker_phone) REFERENCES worker(phone),
+    CONSTRAINT fk_service_job FOREIGN KEY (job_id) REFERENCES job(job_id)
 );
 
-CREATE TABLE Rating (
-    ratingId SERIAL PRIMARY KEY,
+CREATE TABLE rating (
+    rating_id SERIAL PRIMARY KEY,
     rate FLOAT CHECK (rate >= 0 AND rate <= 5),
-    serviceId INT NOT NULL,
+    service_id INT NOT NULL,
     worker_phone VARCHAR(11) NOT NULL,
-    CONSTRAINT fk_rating_service FOREIGN KEY (serviceId) REFERENCES Service(serviceId),
-    CONSTRAINT fk_rating_worker FOREIGN KEY (worker_phone) REFERENCES Worker(phone)
+    CONSTRAINT fk_rating_service FOREIGN KEY (service_id) REFERENCES service(service_id),
+    CONSTRAINT fk_rating_worker FOREIGN KEY (worker_phone) REFERENCES worker(phone)
 );
 
-CREATE TABLE Invoice (
-    invoiceId SERIAL PRIMARY KEY,
+CREATE TABLE invoice (
+    invoice_id SERIAL PRIMARY KEY,
     total DOUBLE PRECISION CONSTRAINT chk_positive_total CHECK (total >= 0),
-    serviceId INT NOT NULL,
-    CONSTRAINT fk_invoice_service FOREIGN KEY (serviceId) REFERENCES Service(serviceId)
+    service_id INT NOT NULL,
+    CONSTRAINT fk_invoice_service FOREIGN KEY (service_id) REFERENCES service(service_id)
 );
 
-CREATE TABLE Notification (
-    notificationId SERIAL PRIMARY KEY,
-    notificationDate DATE,
-    notificationTime TIME,
+CREATE TABLE notification (
+    notification_id SERIAL PRIMARY KEY,
+    notification_date DATE,
+    notification_time TIME,
     worker_phone VARCHAR(11) NOT NULL,
-    serviceId INT NOT NULL,
-    CONSTRAINT fk_notification_worker FOREIGN KEY (worker_phone) REFERENCES Worker(phone),
-    CONSTRAINT fk_notification_service FOREIGN KEY (serviceId) REFERENCES Service(serviceId)
+    service_id INT NOT NULL,
+    CONSTRAINT fk_notification_worker FOREIGN KEY (worker_phone) REFERENCES worker(phone),
+    CONSTRAINT fk_notification_service FOREIGN KEY (service_id) REFERENCES service(service_id)
 );
 
-CREATE TABLE Payment (
-    paymentId SERIAL PRIMARY KEY,
-    paymentDate DATE,
-    invoiceId INT NOT NULL,
+CREATE TABLE payment (
+    payment_id SERIAL PRIMARY KEY,
+    payment_date DATE,
+    invoice_id INT NOT NULL,
     client_phone VARCHAR(11) NOT NULL,
-    CONSTRAINT fk_payment_invoice FOREIGN KEY (invoiceId) REFERENCES Invoice(invoiceId),
-    CONSTRAINT fk_payment_client FOREIGN KEY (client_phone) REFERENCES Client(phone)
+    CONSTRAINT fk_payment_invoice FOREIGN KEY (invoice_id) REFERENCES invoice(invoice_id),
+    CONSTRAINT fk_payment_client FOREIGN KEY (client_phone) REFERENCES client(phone)
 );
 
-CREATE TABLE Payment_method (
+CREATE TABLE payment_method (
     id SERIAL PRIMARY KEY,
     cvv INT CHECK (cvv >= 0),
     owner_name VARCHAR(100),
     card_number VARCHAR(100),
     expiration_date DATE,
     client_phone VARCHAR(11) NOT NULL,
-    CONSTRAINT fk_payment_method_client FOREIGN KEY (client_phone) REFERENCES Client(phone)
+    CONSTRAINT fk_payment_method_client FOREIGN KEY (client_phone) REFERENCES client(phone)
 );
 
-CREATE TABLE Login (
-    loginId SERIAL PRIMARY KEY,
+CREATE TABLE login (
+    login_id SERIAL PRIMARY KEY,
     username VARCHAR(100),
     password VARCHAR(100),
     access_token VARCHAR(100),
@@ -116,5 +116,5 @@ CREATE TABLE Login (
     refresh_token_expiration_date DATE,
     access_token_expiration_date DATE,
     user_phone VARCHAR(11) NOT NULL,
-    CONSTRAINT fk_login_user_info FOREIGN KEY (user_phone) REFERENCES User_info(user_phone)
+    CONSTRAINT fk_login_user_info FOREIGN KEY (user_phone) REFERENCES user_info(user_phone)
 );
