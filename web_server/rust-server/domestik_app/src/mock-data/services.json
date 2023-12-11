@@ -1,0 +1,68 @@
+{
+  "jobs": [
+            {
+                "job_id": "a8114a40-6d2b-4a4f-9d6c-9c0a4c91a63f",
+                "name": "Software Engineer"
+            },
+            {
+                "job_id": "d0c6e8e2-fd0a-4e5c-82e4-87b70e0f6e2a",
+                "name": "Data Analyst"
+            },
+            {
+                "job_id": "f4dabe23-7b1d-43a2-a4d2-3d24b8c4f887",
+                "name": "Product Manager"
+            },
+            {
+                "job_id": "e5d4a30a-80f1-4a51-bd3d-eb0d0c8d2efc",
+                "name": "UX Designer"
+            },
+            {
+                "job_id": "8b0b9f5c-4a71-45e6-8a57-21ae6f220a8b",
+                "name": "DevOps Engineer"
+            },
+            {
+                "job_id": "f6dfb9a3-3f6b-4d3f-bb3e-ea2e1a2f3e0e",
+                "name": "Sales Representative"
+            },
+            {
+                "job_id": "d0f2e5e0-cc96-4e76-b0e9-4a4d3f8c0d4e",
+                "name": "Marketing Specialist"
+            },
+            {
+                "job_id": "b9abf2e1-8d02-4c65-9a4e-244d8a4b1bda",
+                "name": "Accountant"
+            },
+            {
+                "job_id": "fd1bf3a6-2061-4d13-82ac-92d06f1c9d1a",
+                "name": "HR Manager"
+            },
+            {
+                "job_id": "d7a6217f-2b7d-46f4-8e5e-5d250b77f4a5",
+                "name": "Business Analyst"
+            },
+            {
+                "job_id": "e69dbb0d-4cff-4e5a-9093-eb9e1a14b7c9",
+                "name": "Graphic Designer"
+            },
+            {
+                "job_id": "ff0d5b59-1e7f-4c9e-8c39-3a2d68b0f78d",
+                "name": "Financial Analyst"
+            },
+            {
+                "job_id": "8b4c4e4e-14c7-4c6b-bb68-2f0a3a5e0a64",
+                "name": "Project Manager"
+            },
+            {
+                "job_id": "d4e0d13b-cc74-4e6d-9e32-8d5a9a0a3d6e",
+                "name": "Quality Assurance Engineer"
+            },
+            {
+                "job_id": "e1d5cc3b-14d4-4ad8-8051-5a4e4e7e3e7a",
+                "name": "Customer Support Specialist"
+            },
+            {
+                "job_id": "9c8c9a7b-1d,d4-4ad8-8052-5a4e4e7e3e7a",
+                "name": "Professional Gamer"
+            }
+   ]
+}

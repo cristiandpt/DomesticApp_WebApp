@@ -1,0 +1,26 @@
+[package]
+name = "domestik_app"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+diesel = { version = "1.4.8", features = ["postgres",
+"chrono",
+"r2d2"] }
+actix-web = "4.0.0"
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+actix-service = "2.0.2"
+futures = "0.3.29"
+bcrypt = "0.13.0"
+uuid = {version = "1.0.0", features = ["serde", "v4"]}
+chrono = {version = "0.4.19", features = ["serde"]}
+jsonwebtoken = "9.1.0"
+dotenv = "0.15.0"
+lazy_static = "1.4.0"
+
+[[bin]]
+name = "domestik_app"
+path = "src/main.rs"

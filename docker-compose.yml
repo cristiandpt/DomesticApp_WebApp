@@ -13,10 +13,18 @@ services:
     build:
       context: ./web_server/rust-server
       dockerfile: Dockerfile
+    environment: 
+      - JWT_TOKEN=jwt_token
+      - DATABASE_URL=postgres://domesticapp_user:domesticapp_password@postgres:5432/domesticapp_db
+      - DB_URL=postgres://username:password@localhost:5433/domesticapp_db
     ports:
-      - 8000:8000
+      - 8081:8081
+    volumes:
+      - ./web_server/rust-server/domestik_app:/home/app/rust_domestik_app
     networks:
       - internal-network
+    depends_on:
+      - postgres
 
   frontend-app:
     build:
@@ -33,6 +41,25 @@ services:
       NODE_ENV: development  
     networks:
       - internal-network    
+
+  postgres:
+    image: postgres:13
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=domesticapp_user
+      - POSTGRES_PASSWORD=domesticapp_password
+      - POSTGRES_DB=domesticapp_db
+    volumes:
+      - .database/db:/var/lib/postgresql/data
+      #- .database/data/00-database.sql:/docker-entrypoint-initdb.d/00-database.sql
+      #- .database/data/01-records.sql:/docker-entrypoint-initdb.d/01-records.sql
+      #- .database/data/02-triggers.sql:/docker-entrypoint-initdb.d/02-triggers.sql
+      #- .database/data/03-functions.sql:/docker-entrypoint-initdb.d/03-functions.sql
+      #- .database/data/04-procedures.sql:/docker-entrypoint-initdb.d/04-procedures.sql  
+    networks:
+      - internal-network 
+
 
 networks:
   internal-network:
