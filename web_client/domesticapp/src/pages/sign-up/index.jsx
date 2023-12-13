@@ -69,6 +69,14 @@ const SignUp = () => {
               Lets get you all set up so you can verify your personal account
               and begin setting up your profile.
             </p>
+            <div className="mt-3">
+              <Link
+                href="/login"
+                className="text-sm text-blue-500 hover:underline dark:text-blue-400"
+              >
+                Already have an account? Log in
+              </Link>
+            </div>
             <div className="mt-6">
               <h1 className="text-gray-500 dark:text-gray-300">
                 Select type of account
