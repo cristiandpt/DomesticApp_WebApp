@@ -1,73 +1,18 @@
+import PasswordFields from "@/components/common/PasswordFields";
+import PersonalData from "@/components/common/PersonalData";
+
 const SignUpForm = () => {
   return (
     <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
-      <div>
-        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-          First Name
-        </label>
-        <input
-          type="text"
-          placeholder="John"
-          className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-        />
-      </div>
-      <div>
-        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-          Last name
-        </label>
-        <input
-          type="text"
-          placeholder="Snow"
-          className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-        />
-      </div>
-      <div>
-        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-          Phone number
-        </label>
-        <input
-          type="text"
-          placeholder="XXX-XX-XXXX-XXX"
-          className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-        />
-      </div>
-      <div>
-        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-          Email address
-        </label>
-        <input
-          type="email"
-          placeholder="johnsnow@example.com"
-          className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-        />
-      </div>
-      <div>
-        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-          Password
-        </label>
-        <input
-          type="password"
-          placeholder="Enter your password"
-          className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-        />
-      </div>
-      <div>
-        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-          Confirm password
-        </label>
-        <input
-          type="password"
-          placeholder="Enter your password"
-          className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-        />
-      </div>
+      <PersonalData isClient />
+      <PasswordFields />
       <div className="w-full">
         <div>
           <label
             htmlFor="file"
             className="block text-sm text-gray-500 dark:text-gray-300"
           >
-            File
+            Public services
           </label>
           <label
             htmlFor="dropzone-file"
@@ -88,16 +33,16 @@ const SignUpForm = () => {
               />
             </svg>
             <h2 className="mt-1 font-medium tracking-wide text-gray-700 dark:text-gray-200">
-              Payment File
+              Services file
             </h2>
             <p className="mt-2 text-xs tracking-wide text-gray-500 dark:text-gray-400">
-              Upload or darg &amp; drop your file SVG, PNG, JPG or GIF.{" "}
+              Upload your file SVG, PNG, JPG or GIF.{" "}
             </p>
             <input id="dropzone-file" type="file" className="hidden" />
           </label>
         </div>
       </div>
-      <div className="flex items-end">
+      <div className="flex items-end justify-end">
         <div>
           <button className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
             <span>Sign Up </span>
