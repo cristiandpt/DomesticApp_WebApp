@@ -16,7 +16,7 @@ const SignUpForm = () => {
             Profile picture
           </label>
           <label
-            htmlFor="dropzone-file"
+            htmlFor="dropzone-pfp-file"
             className="flex flex-col items-center w-full max-w-lg p-5 mx-auto mt-2 text-center bg-white border-2 border-gray-300 border-dashed cursor-pointer dark:bg-gray-900 dark:border-gray-700 rounded-xl"
           >
             <svg
@@ -39,7 +39,7 @@ const SignUpForm = () => {
             <p className="mt-2 text-xs tracking-wide text-gray-500 dark:text-gray-400">
               Upload your file SVG, PNG, JPG or GIF.{" "}
             </p>
-            <input id="dropzone-file" type="file" className="hidden" />
+            <input id="dropzone-pfp-file" type="file" className="hidden" />
           </label>
         </div>
       </div>
@@ -52,7 +52,7 @@ const SignUpForm = () => {
             Identification
           </label>
           <label
-            htmlFor="dropzone-file"
+            htmlFor="dropzone-id-file"
             className="flex flex-col items-center w-full max-w-lg p-5 mx-auto mt-2 text-center bg-white border-2 border-gray-300 border-dashed cursor-pointer dark:bg-gray-900 dark:border-gray-700 rounded-xl"
           >
             <svg
@@ -75,7 +75,7 @@ const SignUpForm = () => {
             <p className="mt-2 text-xs tracking-wide text-gray-500 dark:text-gray-400">
               Upload your file SVG, PNG, JPG or GIF.{" "}
             </p>
-            <input id="dropzone-file" type="file" className="hidden" />
+            <input id="dropzone-id-file" type="file" className="hidden" />
           </label>
         </div>
       </div>
