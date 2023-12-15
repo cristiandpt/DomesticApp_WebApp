@@ -1,5 +1,6 @@
 import PasswordFields from "@/components/common/PasswordFields";
 import PersonalData from "@/components/common/PersonalData";
+import JobSelection from "./JobSelection";
 
 const SignUpForm = () => {
   return (
@@ -97,6 +98,7 @@ const SignUpForm = () => {
           </button>
         </div>
       </div>
+      <JobSelection />
     </form>
   );
 };

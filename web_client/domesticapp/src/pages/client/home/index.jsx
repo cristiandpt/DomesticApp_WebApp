@@ -1,5 +1,7 @@
+import Navbar from "@/components/common/Navbar";
+
 const Index = () => {
-  return <p> This will be the home page for clients</p>;
+  return <Navbar isClient />;
 };
 
 export default Index;
