@@ -26,7 +26,12 @@ const JobsCarouselItem = (props) => {
         </Typography>
       </CardContent>
       <CardActions className="flex justify-center">
-        <Link href="#">
+        <Link
+          href={{
+            pathname: "/client/search/[jobId]",
+            query: { jobId: "3" },
+          }}
+        >
           <Button size="small">Browse workers</Button>
         </Link>
       </CardActions>
