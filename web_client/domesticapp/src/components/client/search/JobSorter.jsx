@@ -3,23 +3,29 @@ import { Listbox, Transition } from "@headlessui/react";
 import Link from "next/link";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CheckIcon from "@mui/icons-material/Check";
-import { defaultJobSearchOption } from "@/utils/client/constants";
+import { defaultJobSortOption } from "@/utils/client/constants";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const JobSearcher = ({ selectedJob, setSelectedJob, jobOptions }) => {
+const JobSorter = ({
+  selectedSortOption,
+  setSelectedSortOption,
+  sortOptions,
+}) => {
   return (
-    <Listbox value={selectedJob} onChange={setSelectedJob}>
+    <Listbox value={selectedSortOption} onChange={setSelectedSortOption}>
       {({ open }) => (
         <>
           <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">
-            Search jobs
+            Sort by
           </Listbox.Label>
           <div className="relative mt-2">
             <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
               <span className="flex items-center">
-                <span className="ml-3 block truncate">{selectedJob.name}</span>
+                <span className="ml-3 block truncate">
+                  {selectedSortOption.name}
+                </span>
               </span>
               <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                 <KeyboardArrowDownIcon
@@ -37,94 +43,84 @@ const JobSearcher = ({ selectedJob, setSelectedJob, jobOptions }) => {
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                <Link
-                  href={{
-                    pathname: "/client/search/[jobId]",
-                    query: { jobId: "all" },
-                  }}
+                <Listbox.Option
+                  key={"all"}
+                  className={({ active }) =>
+                    classNames(
+                      active ? "bg-indigo-600 text-white" : "text-gray-900",
+                      "relative cursor-default select-none py-2 pl-3 pr-9"
+                    )
+                  }
+                  value={defaultJobSortOption}
                 >
+                  {({ selectedSortOption, active }) => (
+                    <>
+                      <div className="flex items-center">
+                        <span
+                          className={classNames(
+                            selectedSortOption
+                              ? "font-semibold"
+                              : "font-normal",
+                            "ml-3 block truncate"
+                          )}
+                        >
+                          {defaultJobSortOption.name}
+                        </span>
+                      </div>
+
+                      {selectedSortOption ? (
+                        <span
+                          className={classNames(
+                            active ? "text-white" : "text-indigo-600",
+                            "absolute inset-y-0 right-0 flex items-center pr-4"
+                          )}
+                        >
+                          <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                        </span>
+                      ) : null}
+                    </>
+                  )}
+                </Listbox.Option>
+
+                {sortOptions.map((job) => (
                   <Listbox.Option
-                    key={"all"}
+                    key={job.id}
                     className={({ active }) =>
                       classNames(
                         active ? "bg-indigo-600 text-white" : "text-gray-900",
                         "relative cursor-default select-none py-2 pl-3 pr-9"
                       )
                     }
-                    value={defaultJobSearchOption}
+                    value={job}
                   >
-                    {({ selectedJob, active }) => (
+                    {({ selectedSortOption, active }) => (
                       <>
                         <div className="flex items-center">
                           <span
                             className={classNames(
-                              selectedJob ? "font-semibold" : "font-normal",
+                              selectedSortOption
+                                ? "font-semibold"
+                                : "font-normal",
                               "ml-3 block truncate"
                             )}
                           >
-                            All jobs
+                            {job.name}
                           </span>
                         </div>
 
-                        {selectedJob ? (
+                        {selectedSortOption ? (
                           <span
                             className={classNames(
                               active ? "text-white" : "text-indigo-600",
                               "absolute inset-y-0 right-0 flex items-center pr-4"
                             )}
                           >
-                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                            {/* <CheckIcon className="h-5 w-5" aria-hidden="true" /> */}
                           </span>
                         ) : null}
                       </>
                     )}
                   </Listbox.Option>
-                </Link>
-
-                {jobOptions.map((job) => (
-                  <Link
-                    href={{
-                      pathname: "/client/search/[jobId]",
-                      query: { jobId: job?.id },
-                    }}
-                  >
-                    <Listbox.Option
-                      key={job.id}
-                      className={({ active }) =>
-                        classNames(
-                          active ? "bg-indigo-600 text-white" : "text-gray-900",
-                          "relative cursor-default select-none py-2 pl-3 pr-9"
-                        )
-                      }
-                      value={job}
-                    >
-                      {({ selectedJob, active }) => (
-                        <>
-                          <div className="flex items-center">
-                            <span
-                              className={classNames(
-                                selectedJob ? "font-semibold" : "font-normal",
-                                "ml-3 block truncate"
-                              )}
-                            >
-                              {job.name}
-                            </span>
-                          </div>
-
-                          {selectedJob ? (
-                            <span
-                              className={classNames(
-                                active ? "text-white" : "text-indigo-600",
-                                "absolute inset-y-0 right-0 flex items-center pr-4"
-                              )}
-                            >
-                              {/* <CheckIcon className="h-5 w-5" aria-hidden="true" /> */}
-                            </span>
-                          ) : null}
-                        </>
-                      )}
-                    </Listbox.Option>
-                  </Link>
                 ))}
               </Listbox.Options>
             </Transition>
@@ -135,4 +131,4 @@ const JobSearcher = ({ selectedJob, setSelectedJob, jobOptions }) => {
   );
 };
 
-export default JobSearcher;
+export default JobSorter;

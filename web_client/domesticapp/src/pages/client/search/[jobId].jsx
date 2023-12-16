@@ -1,5 +1,9 @@
 import JobSearcher from "@/components/client/search/JobSearcher";
-import { defaultJobSearchOption } from "@/utils/client/constants";
+import JobSorter from "@/components/client/search/JobSorter";
+import {
+  defaultJobSearchOption,
+  defaultJobSortOption,
+} from "@/utils/client/constants";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -66,11 +70,27 @@ const jobOptions = [
   },
 ];
 
+const sortOptions = [
+  {
+    id: 1,
+    name: "Rating",
+  },
+  {
+    id: 2,
+    name: "Distance",
+  },
+  {
+    id: 3,
+    name: "Price",
+  },
+];
 const JobSearch = () => {
   const router = useRouter();
   const query = router.query;
   console.log("The searched job is: ", query);
   const [selectedJob, setSelectedJob] = useState(defaultJobSearchOption);
+  const [selectedSortOption, setSelectedSortOption] =
+    useState(defaultJobSortOption);
 
   return (
     <>
@@ -79,6 +99,11 @@ const JobSearch = () => {
         selectedJob={selectedJob}
         setSelectedJob={setSelectedJob}
         jobOptions={jobOptions}
+      />
+      <JobSorter
+        selectedSortOption={selectedSortOption}
+        setSelectedSortOption={setSelectedSortOption}
+        sortOptions={sortOptions}
       />
     </>
   );
