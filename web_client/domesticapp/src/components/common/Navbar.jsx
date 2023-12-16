@@ -6,17 +6,28 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuIcon from "@mui/icons-material/Menu";
 import ClientNavMenu from "../client/menus/ClientNavMenu";
 import WorkerNavMenu from "../worker/menus/WorkerNavMenu";
+
 const Navbar = ({ isClient, isWorker }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleMenuClose = (event) => {
+    // Check if the clicked target is outside the menu
+    if (!anchorEl.contains(event.target)) {
+      handleClose();
+    }
+  };
+
   return (
-    <nav>
+    <>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <Tooltip title="Navigation Menu">
           <IconButton
@@ -36,7 +47,7 @@ const Navbar = ({ isClient, isWorker }) => {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
+        onClick={handleMenuClose} // Use the custom handler to close on outside click
         PaperProps={{
           elevation: 0,
           sx: {
@@ -69,7 +80,7 @@ const Navbar = ({ isClient, isWorker }) => {
         {isClient && <ClientNavMenu handleClose={handleClose} />}
         {isWorker && <WorkerNavMenu handleClose={handleClose} />}
       </Menu>
-    </nav>
+    </>
   );
 };
 

@@ -182,7 +182,7 @@ const JobSearch = () => {
   console.log("The requested worker is:", requestWorker);
   return (
     <>
-      <p> The job your are looking for is: {query.jobId}</p>
+      <p> Here are your requests: {query.jobId}</p>
       <main className="m-6">
         <section className="mb-3 flex justify-between md:justify-start">
           <JobSearcher
@@ -209,7 +209,7 @@ const JobSearch = () => {
                           scope="col"
                           className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider md:text-left"
                         >
-                          Worker
+                          Client
                         </th>
                         <th
                           scope="col"

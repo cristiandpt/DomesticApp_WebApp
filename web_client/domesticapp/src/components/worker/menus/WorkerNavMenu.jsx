@@ -1,40 +1,58 @@
 import { Avatar, ListItemIcon, MenuItem } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import { red } from "@mui/material/colors";
+import Link from "next/link";
 import WorkIcon from "@mui/icons-material/Work";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
-const WorkerNavMenu = ({ handleClose }) => {
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+
+const WorkerNavMenu = ({ handleClick }) => {
   return (
     <>
-      <MenuItem className="w-screen sm:w-auto" onClick={handleClose}>
-        <Avatar /> My account
-      </MenuItem>
-      <MenuItem onClick={handleClose}>
-        <WorkIcon className="mr-3" /> My jobs
-      </MenuItem>
-      <MenuItem onClick={handleClose}>
-        <NotificationsNoneIcon className="mr-3" /> Notifications
-      </MenuItem>
+      <Link href="/worker/myAccount" passHref>
+        <MenuItem component="a" className="w-screen sm:w-auto" onClick={handleClick}>
+          <Avatar /> My account
+        </MenuItem>
+      </Link>
+      <Link href="/worker/jobs" passHref>
+        <MenuItem component="a" onClick={handleClick}>
+          <WorkIcon className="mr-3" /> My jobs
+        </MenuItem>
+      </Link>
+      <Link href="/worker/home" passHref>
+        <MenuItem component="a" onClick={handleClick}>
+          <MonetizationOnIcon className="mr-3" /> Work now
+        </MenuItem>
+      </Link>
+      <Link href="/settings" passHref>
+        <MenuItem component="a" onClick={handleClick}>
+          <NotificationsNoneIcon className="mr-3" /> Settings
+        </MenuItem>
+      </Link>
       <Divider />
-      <MenuItem
-        className="font-bold"
-        sx={{ color: red[700] }}
-        onClick={handleClose}
-      >
-        <ListItemIcon>
-          <LogoutIcon sx={{ color: red[700] }} fontSize="small" />
-        </ListItemIcon>
-        Log out
-      </MenuItem>
+      <Link href="/" passHref>
+        <MenuItem
+          className="font-bold"
+          sx={{ color: red[700] }}
+          onClick={handleClick}
+        >
+          <ListItemIcon>
+            <LogoutIcon sx={{ color: red[700] }} fontSize="small" />
+          </ListItemIcon>
+          Log out
+        </MenuItem>
+      </Link>
       <Divider />
-      <MenuItem onClick={handleClose}>
-        <ListItemIcon>
-          <AccountBoxIcon fontSize="small" />
-        </ListItemIcon>
-        Become a client
-      </MenuItem>
+      <Link href="/welcome-client" passHref>
+        <MenuItem component="a" onClick={handleClick}>
+          <ListItemIcon>
+            <AccountBoxIcon fontSize="small" />
+          </ListItemIcon>
+          Become a client
+        </MenuItem>
+      </Link>
     </>
   );
 };
