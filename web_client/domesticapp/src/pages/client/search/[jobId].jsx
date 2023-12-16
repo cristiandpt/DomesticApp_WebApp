@@ -1,4 +1,5 @@
 import JobSearcher from "@/components/client/search/JobSearcher";
+import { defaultJobSearchOption } from "@/utils/client/constants";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -69,7 +70,7 @@ const JobSearch = () => {
   const router = useRouter();
   const query = router.query;
   console.log("The searched job is: ", query);
-  const [selectedJob, setSelectedJob] = useState(jobOptions[0]);
+  const [selectedJob, setSelectedJob] = useState(defaultJobSearchOption);
 
   return (
     <>
