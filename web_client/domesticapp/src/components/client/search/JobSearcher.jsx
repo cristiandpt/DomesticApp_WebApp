@@ -13,7 +13,7 @@ const JobSearcher = ({ selectedJob, setSelectedJob, jobOptions }) => {
     <Listbox value={selectedJob} onChange={setSelectedJob}>
       {({ open }) => (
         <>
-          <div className="relative mt-2 md:mr-6">
+          <div className="relative mt-2 mr-3">
             <Listbox.Label className="inline text-sm font-medium leading-6 text-gray-900">
               Search jobs
             </Listbox.Label>

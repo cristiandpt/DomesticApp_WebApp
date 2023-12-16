@@ -184,7 +184,7 @@ const JobSearch = () => {
     <>
       <p> The job your are looking for is {query.jobId}</p>
       <main className="m-6">
-        <section className="mb-3 flex justify-between md:items-start">
+        <section className="mb-3 flex justify-between md:justify-start">
           <JobSearcher
             selectedJob={selectedJob}
             setSelectedJob={setSelectedJob}
