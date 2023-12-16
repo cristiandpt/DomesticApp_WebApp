@@ -183,93 +183,154 @@ const JobSearch = () => {
   return (
     <>
       <p> The job your are looking for is {query.jobId}</p>
-      <JobSearcher
-        selectedJob={selectedJob}
-        setSelectedJob={setSelectedJob}
-        jobOptions={jobOptions}
-      />
-      <JobSorter
-        selectedSortOption={selectedSortOption}
-        setSelectedSortOption={setSelectedSortOption}
-        sortOptions={sortOptions}
-      />
-      <section className="m-6">
-        <div className="flex flex-col">
-          <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 ">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider md:text-left"
-                      >
-                        Worker
-                      </th>
-                      <th
-                        scope="col"
-                        className="max-[768px]:hidden px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Rating
-                      </th>
-                      <th
-                        scope="col"
-                        className="max-[768px]:hidden px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Distance
-                      </th>
-                      <th
-                        scope="col"
-                        className="max-[768px]:hidden px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Price
-                      </th>
-                      <th
-                        scope="col"
-                        className="max-[768px]:hidden px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Request
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {workers?.map((worker) => (
-                      <>
-                        <tr className="md:hidden ">
-                          <td className="flex justify-between gap-x-6 py-5 px-3">
-                            <div className="flex min-w-0 gap-x-4 items-center">
-                              <img
-                                className="h-12 w-12 flex-none rounded-full bg-gray-50"
-                                src="https://picsum.photos/200"
-                                alt=""
-                              />
-                              <div className="min-w-0 flex-auto">
-                                <p className="text-sm font-semibold leading-6 text-gray-900">
-                                  {`${worker?.first_name} ${worker?.last_name}`}
-                                </p>
+      <main className="m-6">
+        <section className="mb-3 flex justify-between md:items-start">
+          <JobSearcher
+            selectedJob={selectedJob}
+            setSelectedJob={setSelectedJob}
+            jobOptions={jobOptions}
+          />
+          <JobSorter
+            selectedSortOption={selectedSortOption}
+            setSelectedSortOption={setSelectedSortOption}
+            sortOptions={sortOptions}
+          />
+        </section>
+
+        <section>
+          <div className="flex flex-col">
+            <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                  <table className="min-w-full divide-y divide-gray-200 ">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider md:text-left"
+                        >
+                          Worker
+                        </th>
+                        <th
+                          scope="col"
+                          className="max-[768px]:hidden px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Rating
+                        </th>
+                        <th
+                          scope="col"
+                          className="max-[768px]:hidden px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Distance
+                        </th>
+                        <th
+                          scope="col"
+                          className="max-[768px]:hidden px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Price
+                        </th>
+                        <th
+                          scope="col"
+                          className="max-[768px]:hidden px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Request
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {workers?.map((worker) => (
+                        <>
+                          <tr className="md:hidden ">
+                            <td className="flex justify-between gap-x-6 py-5 px-3">
+                              <div className="flex min-w-0 gap-x-4 items-center">
+                                <img
+                                  className="h-12 w-12 flex-none rounded-full bg-gray-50"
+                                  src="https://picsum.photos/200"
+                                  alt=""
+                                />
+                                <div className="min-w-0 flex-auto">
+                                  <p className="text-sm font-semibold leading-6 text-gray-900">
+                                    {`${worker?.first_name} ${worker?.last_name}`}
+                                  </p>
+                                  <Rating
+                                    name={`${worker?.id}-rating`}
+                                    defaultValue={worker?.rating}
+                                    precision={0.1}
+                                    readOnly
+                                    size="small"
+                                  />
+                                </div>
+                              </div>
+                              <div className="flex flex-col">
+                                <div className="mb-1 flex justify-between">
+                                  <span className="px-2 inline-flex text-xs leading-5 font-semibold bg-green-100 text-green-800">
+                                    {`${worker?.distance} km`}
+                                  </span>
+                                  <span className="px-2 inline-flex ml-5 items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
+                                    {`$${worker?.price}`}
+                                  </span>
+                                </div>
+
+                                <Button
+                                  variant="outlined"
+                                  endIcon={<RequestPageIcon />}
+                                  onClick={() => {
+                                    setRequestModal(true);
+                                    setRequestWorker({
+                                      ...requestWorker,
+                                      ...worker,
+                                    });
+                                  }}
+                                >
+                                  Request
+                                </Button>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr
+                            className="max-[768px]:hidden"
+                            key={`product-item-${worker.id}`}
+                          >
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <div className="flex items-center">
+                                <div className="flex-shrink-0 h-10 w-10">
+                                  <Avatar>
+                                    <AccountCircleIcon />
+                                  </Avatar>
+                                </div>
+                                <div className="ml-4">
+                                  <div className="text-sm font-medium text-gray-900">
+                                    {/* {product.title} */}{" "}
+                                    {`${worker?.first_name} ${worker?.last_name}`}
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <div className="text-sm text-gray-900">
                                 <Rating
                                   name={`${worker?.id}-rating`}
                                   defaultValue={worker?.rating}
                                   precision={0.1}
                                   readOnly
-                                  size="small"
                                 />
                               </div>
-                            </div>
-                            <div className="flex flex-col">
-                              <div className="mb-1 flex justify-between">
-                                <span className="px-2 inline-flex text-xs leading-5 font-semibold bg-green-100 text-green-800">
-                                  {`${worker?.distance} km`}
-                                </span>
-                                <span className="px-2 inline-flex ml-5 items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
-                                  {`$${worker?.price}`}
-                                </span>
-                              </div>
-
-                              <Button
-                                variant="outlined"
-                                endIcon={<RequestPageIcon />}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                {/* {`$ ${product.price}`} */}{" "}
+                                {`${worker?.distance} km`}
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <span className="px-2 inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
+                                {`$${worker?.price}`}
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                              <button
+                                type="button"
+                                className="text-indigo-600 hover:text-indigo-900"
                                 onClick={() => {
                                   setRequestModal(true);
                                   setRequestWorker({
@@ -279,85 +340,29 @@ const JobSearch = () => {
                                 }}
                               >
                                 Request
-                              </Button>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr
-                          className="max-[768px]:hidden"
-                          key={`product-item-${worker.id}`}
-                        >
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="flex items-center">
-                              <div className="flex-shrink-0 h-10 w-10">
-                                <Avatar>
-                                  <AccountCircleIcon />
-                                </Avatar>
-                              </div>
-                              <div className="ml-4">
-                                <div className="text-sm font-medium text-gray-900">
-                                  {/* {product.title} */}{" "}
-                                  {`${worker?.first_name} ${worker?.last_name}`}
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-900">
-                              <Rating
-                                name={`${worker?.id}-rating`}
-                                defaultValue={worker?.rating}
-                                precision={0.1}
-                                readOnly
-                              />
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                              {/* {`$ ${product.price}`} */}{" "}
-                              {`${worker?.distance} km`}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="px-2 inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
-                              {`$${worker?.price}`}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                            <button
-                              type="button"
-                              className="text-indigo-600 hover:text-indigo-900"
-                              onClick={() => {
-                                setRequestModal(true);
-                                setRequestWorker({
-                                  ...requestWorker,
-                                  ...worker,
-                                });
-                              }}
-                            >
-                              Request
-                            </button>
-                          </td>
-                        </tr>
-                      </>
-                    ))}
-                  </tbody>
-                </table>
+                              </button>
+                            </td>
+                          </tr>
+                        </>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <RequestServiceModal
-        open={requestModal}
-        setOpen={setRequestModal}
-        modalTitle={"Request information"}
-      >
-        <p>
-          {" "}
-          This is the body for the modal to request worker {requestWorker?.id}
-        </p>
-      </RequestServiceModal>
+        </section>
+        <RequestServiceModal
+          open={requestModal}
+          setOpen={setRequestModal}
+          modalTitle={"Request information"}
+        >
+          <p>
+            {" "}
+            This is the body for the modal to request worker {requestWorker?.id}
+          </p>
+        </RequestServiceModal>
+      </main>
     </>
   );
 };
