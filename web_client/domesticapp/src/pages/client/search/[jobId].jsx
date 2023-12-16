@@ -9,6 +9,7 @@ import { Avatar, Button, Rating } from "@mui/material";
 import RequestPageIcon from "@mui/icons-material/RequestPage";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import RequestServiceModal from "@/components/client/modals/RequestServiceModal";
 
 const jobOptions = [
   {
@@ -173,11 +174,12 @@ const workers = [
 const JobSearch = () => {
   const router = useRouter();
   const query = router.query;
-  console.log("The searched job is: ", query);
   const [selectedJob, setSelectedJob] = useState(defaultJobSearchOption);
   const [selectedSortOption, setSelectedSortOption] =
     useState(defaultJobSortOption);
-
+  const [requestModal, setRequestModal] = useState(false);
+  const [requestWorker, setRequestWorker] = useState(null);
+  console.log("The requested worker is:", requestWorker);
   return (
     <>
       <p> The job your are looking for is {query.jobId}</p>
@@ -268,6 +270,13 @@ const JobSearch = () => {
                               <Button
                                 variant="outlined"
                                 endIcon={<RequestPageIcon />}
+                                onClick={() => {
+                                  setRequestModal(true);
+                                  setRequestWorker({
+                                    ...requestWorker,
+                                    ...worker,
+                                  });
+                                }}
                               >
                                 Request
                               </Button>
@@ -318,6 +327,13 @@ const JobSearch = () => {
                             <button
                               type="button"
                               className="text-indigo-600 hover:text-indigo-900"
+                              onClick={() => {
+                                setRequestModal(true);
+                                setRequestWorker({
+                                  ...requestWorker,
+                                  ...worker,
+                                });
+                              }}
                             >
                               Request
                             </button>
@@ -332,6 +348,16 @@ const JobSearch = () => {
           </div>
         </div>
       </section>
+      <RequestServiceModal
+        open={requestModal}
+        setOpen={setRequestModal}
+        modalTitle={"Request information"}
+      >
+        <p>
+          {" "}
+          This is the body for the modal to request worker {requestWorker?.id}
+        </p>
+      </RequestServiceModal>
     </>
   );
 };
