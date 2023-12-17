@@ -4,7 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import GlobalLayout from './GlobalLayout';
 
-const NotificationsW = ({userType}) => {
+const MyServices = ({userType}) => {
   const [jobRecords, setJobRecords] = useState([
     {
       id: 1,
@@ -29,7 +29,7 @@ const NotificationsW = ({userType}) => {
     <div>
       <GlobalLayout userType={userType}>
       <main className="container mx-auto p-8">
-        <h1 className="text-4xl font-bold mb-4">Notifications</h1>
+        <h1 className="text-4xl font-bold mb-4">My services</h1>
         <div>
           {jobRecords.map((job) => (
             <div key={job.id} className="border p-4 mb-4">
@@ -45,4 +45,4 @@ const NotificationsW = ({userType}) => {
   );
 };
 
-export default NotificationsW;
+export default MyServices;

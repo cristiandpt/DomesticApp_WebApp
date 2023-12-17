@@ -2,10 +2,10 @@ import * as React from "react";
 import Navbar from "./Navbar"; // Adjust the path accordingly
 import RenderLogo from "./RenderLogo"; // Import your logo component
 
-const Header = ({ isClient, isWorker }) => {
+const Header = ({ userType }) => {
   return (
     <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-      <Navbar isClient={isClient} isWorker={isWorker} />
+      <Navbar userType={userType} />
       <RenderLogo />
     </header>
   );

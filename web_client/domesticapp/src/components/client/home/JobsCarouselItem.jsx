@@ -11,14 +11,15 @@ const JobsCarouselItem = (props) => {
   const { name, description } = props.item;
   console.log(props.item);
   return (
-    <Card className="w-60 md:w-[560px]">
+    <Card className="mx-2" sx={{ minWidth: 400, backgroundColor: "#f0f0f0" }}>
+      
       <CardMedia
         sx={{ height: 140 }}
         image="https://picsum.photos/560/140"
         title="green iguana"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+       <Typography variant="h6" gutterBottom>
           {name}
         </Typography>
         <Typography variant="body2" color="text.secondary">

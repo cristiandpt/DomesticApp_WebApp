@@ -7,7 +7,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ClientNavMenu from "../client/menus/ClientNavMenu";
 import WorkerNavMenu from "../worker/menus/WorkerNavMenu";
 
-const Navbar = ({ isClient, isWorker }) => {
+const Navbar = ({ userType }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -77,8 +77,8 @@ const Navbar = ({ isClient, isWorker }) => {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        {isClient && <ClientNavMenu handleClose={handleClose} />}
-        {isWorker && <WorkerNavMenu handleClose={handleClose} />}
+        {userType=='client' && <ClientNavMenu handleClose={handleClose} />}
+        {userType=='worker' && <WorkerNavMenu handleClose={handleClose} />}
       </Menu>
     </>
   );

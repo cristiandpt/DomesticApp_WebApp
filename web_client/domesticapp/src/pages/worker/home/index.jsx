@@ -5,18 +5,16 @@ import JobSearch from "@/pages/client/search/[jobId]";
 import JobDashboard from "./dashboard/[jobId]";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
+import GlobalLayout from "@/components/common/GlobalLayout";
 
 
 const Index = () => {
   return (
-    <>
-       <Header isClient={false} isWorker={true} />
-
-      <section className="m-16 grid">
-        <JobDashboard />
-      </section>
-      <Footer></Footer>
-    </>
+    <GlobalLayout userType={'worker'}>
+      <JobDashboard></JobDashboard>
+    </GlobalLayout>
+       
+    
   );
 };
 

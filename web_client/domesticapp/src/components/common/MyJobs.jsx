@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import WorkerNavMenu from '../worker/menus/WorkerNavMenu';
-import ClientNavMenu from '../client/menus/ClientNavMenu';
+import GlobalLayout from './GlobalLayout';
 
-const MyJobs = ({isWorker}) => {
+const MyJobs = ({userType}) => {
   // Sample job list, replace with data fetched from the database
   
   const [jobs, setJobs] = useState([
@@ -48,18 +45,14 @@ const MyJobs = ({isWorker}) => {
     });
   };
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
 
   const handleRemoveJob = (id) => {
     setJobs((prevJobs) => prevJobs.filter((job) => job.id !== id));
   };
 
   return (
-    <div>
-      <Header />
+    <GlobalLayout userType={userType}>
       <main className="container mx-auto p-8">
-      {isMenuOpen && (isWorker ? <WorkerNavMenu /> : <ClientNavMenu />)}
         <h1 className="text-4xl font-bold mb-4">My Jobs</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div>
@@ -132,9 +125,10 @@ const MyJobs = ({isWorker}) => {
           </div>
         </div>
       </main>
-      <Footer />
-    </div>
+    </GlobalLayout>
   );
 };
+
+
 
 export default MyJobs;

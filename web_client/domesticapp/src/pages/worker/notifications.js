@@ -3,7 +3,7 @@ import NotificationsW from '@/components/common/NotificationsW';
 import React from 'react';
 
 const NotificationsPage = () => {
-  return <NotificationsW />;
+  return <NotificationsW userType={'worker'}/>;
 };
 
 export default NotificationsPage;

@@ -1,46 +1,60 @@
 import { Avatar, ListItemIcon, MenuItem } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import { red } from "@mui/material/colors";
-import DesignServicesIcon from "@mui/icons-material/DesignServices";
-import WalletIcon from "@mui/icons-material/Wallet";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import Link from "next/link";
+import WorkIcon from "@mui/icons-material/Work";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import LogoutIcon from "@mui/icons-material/Logout";
-import EngineeringIcon from "@mui/icons-material/Engineering";
-const ClientNavMenu = ({ handleClose }) => {
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+
+const ClientNavMenu = ({ handleClick }) => {
   return (
     <>
-      <MenuItem className="w-screen sm:w-auto" onClick={handleClose}>
-        <Avatar /> My account
-      </MenuItem>
-      <MenuItem onClick={handleClose}>
-        <DesignServicesIcon className="mr-3" /> My services
-      </MenuItem>
-      <MenuItem onClick={handleClose}>
-        <WalletIcon className="mr-3" /> My wallet
-      </MenuItem>
-      <MenuItem onClick={handleClose}>
-        <LocationOnIcon className="mr-3" /> My addresses
-      </MenuItem>
+      <Link href="/client/myAccount" passHref>
+        <MenuItem component="a" className="w-screen sm:w-auto" onClick={handleClick}>
+          <Avatar /> My account
+        </MenuItem>
+      </Link>
+      <Link href="/client/myServices" passHref>
+        <MenuItem component="a" onClick={handleClick}>
+          <WorkIcon className="mr-3" /> My services
+        </MenuItem>
+      </Link>
+      <Link href="/client/myWallet" passHref>
+        <MenuItem component="a" onClick={handleClick}>
+          <MonetizationOnIcon className="mr-3" /> My wallet
+        </MenuItem>
+      </Link>
+      <Link href="/client/myAdresses" passHref>
+        <MenuItem component="a" onClick={handleClick}>
+          <NotificationsNoneIcon className="mr-3" /> My addresses
+        </MenuItem>
+      </Link>
       <Divider />
-      <MenuItem
-        className="font-bold"
-        sx={{ color: red[700] }}
-        onClick={handleClose}
-      >
-        <ListItemIcon>
-          <LogoutIcon sx={{ color: red[700] }} fontSize="small" />
-        </ListItemIcon>
-        Log out
-      </MenuItem>
+      <Link href="/" passHref>
+        <MenuItem
+          className="font-bold"
+          sx={{ color: red[700] }}
+          onClick={handleClick}
+        >
+          <ListItemIcon>
+            <LogoutIcon sx={{ color: red[700] }} fontSize="small" />
+          </ListItemIcon>
+          Log out
+        </MenuItem>
+      </Link>
       <Divider />
-      <MenuItem onClick={handleClose}>
-        <ListItemIcon>
-          <EngineeringIcon fontSize="small" />
-        </ListItemIcon>
-        Become a worker
-      </MenuItem>
+      <Link href="/welcome-client" passHref>
+        <MenuItem component="a" onClick={handleClick}>
+          <ListItemIcon>
+            <AccountBoxIcon fontSize="small" />
+          </ListItemIcon>
+          Become a client
+        </MenuItem>
+      </Link>
     </>
-  );
+    );
 };
 
 export default ClientNavMenu;

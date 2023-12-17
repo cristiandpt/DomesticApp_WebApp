@@ -171,7 +171,8 @@ const workers = [
     price: 21,
   },
 ];
-const JobSearch = () => {
+
+const JobSearch = ({userType}) => {
   const router = useRouter();
   const query = router.query;
   const [selectedJob, setSelectedJob] = useState(defaultJobSearchOption);
