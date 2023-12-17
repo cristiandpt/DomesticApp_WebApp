@@ -59,3 +59,11 @@ type Customer struct {
 	LoggedIn  bool       `json:"loggedin"`
 	Orders    []Order    `json:"orders"`
 }
+
+type Payment struct {
+	ClientID  string    `json:"client_id" binding:"required"`
+	WorkerID  string    `json:"worker_id" binding:"required"`
+	ServiceID string    `json:"service_id" binding:"required"`
+	Quantity  float64   `json:"quantity" binding:"required"`
+	Date      time.Time `json:"date" binding:"required"`
+}

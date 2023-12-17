@@ -130,6 +130,7 @@ dist
 .pnp.*
 
 .database/
+db/
 
 web_server/rust-server/domestik_app/target
 web_server/rust-server/domestik_app/migrations  

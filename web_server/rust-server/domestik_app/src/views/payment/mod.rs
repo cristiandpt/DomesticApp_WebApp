@@ -1,4 +1,5 @@
 mod register_payment;
+mod get_methods;
 
 
 use actix_web::web::{ServiceConfig, get, post, scope};
@@ -20,5 +21,6 @@ pub fn payments_factory( app: &mut ServiceConfig) {
     app.service(                                            // Here there is a issue about understand the web::resource configuration in comparation with scope method
         scope("v1/payments")                            // More info about https://actix.rs/docs/application  -- Tell about a dynamic path semgments for incomming request https://docs.rs/actix-web/4.4.0/actix_web/web/fn.resource.html 
         .route("register", post().to(register_payment::register))
+        .route("payment_methods", post().to(get_methods::payment_methods))
     );
 }

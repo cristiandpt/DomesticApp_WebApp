@@ -40,12 +40,14 @@ impl FromRequest for JwToken {
                 let raw_token = token.to_str().unwrap().to_string();
                 let token_result = JwToken::from_token(raw_token);
                 match token_result {
-                    Some(token) => {
+                    Ok(token) => {
                         return ok(token)
                     },
-                    None => {
-                        let error = ErrorUnauthorized("Invalid token");
-                        return err(error)
+                    Err(message) => {
+                        if message == "ExpiredSignature".to_owned() {
+                            return err(ErrorUnauthorized("token expired"))
+                        }
+                        return err(ErrorUnauthorized("token can't be decoded"))
                     }
                 } 
             },
@@ -85,16 +87,20 @@ impl JwToken {
     }
     
 
-    pub fn from_token(token: String) -> Option<Self> {
+    pub fn from_token(token: String) -> Result<Self, String> {
         let api_key = DecodingKey::from_secret(JwToken::get_key().as_ref());
         let token_result = decode::<JwToken>(&token, &api_key, &Validation::new(Algorithm::HS256));
         match token_result {
             Ok(token_data) => {
-                return Some(token_data.claims)
+                return Ok(token_data.claims)
             },
-            Err(_) => {
-                return None
+            Err(error) => {
+                let message = format!("{}", error);
+                return Err(message)
             }
         }
     }
 }
+
+
+

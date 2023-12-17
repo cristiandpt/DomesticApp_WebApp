@@ -19,7 +19,8 @@ else
   
   # migrate tables to postgres container
   diesel migration run
-  tail -f /dev/null
+#   tail -f /dev/null
+  cargo run
 fi
 
 

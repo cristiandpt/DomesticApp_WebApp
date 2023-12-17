@@ -1,7 +1,8 @@
 mod job_services;
 mod auth;
-mod api;
+pub mod api;
 mod payment;
+mod worker;
 
 use job_services::job_services_factory;
 use auth::auth_views_factory;

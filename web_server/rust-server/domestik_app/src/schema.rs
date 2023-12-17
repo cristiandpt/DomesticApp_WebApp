@@ -125,7 +125,6 @@ diesel::table! {
         birth_date -> Nullable<Date>,
         #[max_length = 100]
         user_type -> Nullable<Varchar>,
-        password -> Nullable<Varchar>,
     }
 }
 

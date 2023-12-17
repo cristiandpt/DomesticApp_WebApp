@@ -1,5 +1,6 @@
 mod get_all_services;
 mod request_service;
+mod ended_service_notification;
 
 use actix_web::web::{ServiceConfig, get, post, scope};
 
@@ -23,3 +24,4 @@ pub fn job_services_factory( app: &mut ServiceConfig) {
         .route("services", post().to(request_service::request_service))
     );
 }
+
