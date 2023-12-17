@@ -25,11 +25,11 @@ const jobs = [
 
 const JobSelection = () => {
   return (
-    <>
+    <section className="flex flex-col mt-6">
       {jobs?.map((job) => (
         <JobSelectionOption key={job.id} jobName={job?.title} />
       ))}
-    </>
+    </section>
   );
 };
 
