@@ -1,4 +1,5 @@
 import JobsCarousel from "@/components/client/home/JobsCarousel";
+import MapWidget from "@/components/client/location/MapWidget";
 import Navbar from "@/components/common/Navbar";
 
 const Index = () => {
