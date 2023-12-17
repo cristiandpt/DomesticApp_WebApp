@@ -1,15 +1,5 @@
-import JobSearcher from "@/components/client/search/JobSearcher";
-import JobSorter from "@/components/client/search/JobSorter";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import {
-  defaultJobSearchOption,
-  defaultJobSortOption,
-} from "@/utils/client/constants";
-import { Avatar, Button, Rating } from "@mui/material";
-import RequestPageIcon from "@mui/icons-material/RequestPage";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import RequestServiceModal from "@/components/client/modals/RequestServiceModal";
+import { Avatar, Rating } from "@mui/material";
 
 const workers = [
   {
@@ -97,12 +87,9 @@ const workers = [
     price: 21,
   },
 ];
-const JobSearch = () => {
-  const router = useRouter();
-  const query = router.query;
+const Dashboard = () => {
   return (
     <>
-      <p> Here are your requests: {query.jobId}</p>
       <main className="m-6">
         <section>
           <div className="flex flex-col">
@@ -177,6 +164,11 @@ const JobSearch = () => {
                                     {`$${worker?.price}`}
                                   </span>
                                 </div>
+                                <div className="mt-1 mb-1 flex justify-between">
+                                  <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+                                    {worker?.job?.name}
+                                  </span>
+                                </div>
                               </div>
                             </td>
                           </tr>
@@ -200,7 +192,11 @@ const JobSearch = () => {
                               </div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm text-gray-900"></div>
+                              <div className="text-sm text-gray-900">
+                                <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+                                  {worker?.job?.name}
+                                </span>
+                              </div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
                               <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -236,4 +232,4 @@ const JobSearch = () => {
   );
 };
 
-export default JobSearch;
+export default Dashboard;

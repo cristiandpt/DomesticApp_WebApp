@@ -3,18 +3,12 @@ import L from "leaflet";
 import MarkerIcon from "../../../../../node_modules/leaflet/dist/images/marker-icon.png";
 import MarkerShadow from "../../../../../node_modules/leaflet/dist/images/marker-shadow.png";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { useState } from "react";
 
 const MapWidget = ({ latitude, longitude }) => {
-  const [coord, setCoord] = useState([51.505, -0.09]);
-
   return (
     <div>
       <MapContainer
-        style={{
-          height: "100vh",
-          width: "100vw",
-        }}
+        className="w-48 h-48 md:w-60 h-60"
         center={[latitude, longitude]}
         zoom={13}
         scrollWheelZoom={true}
