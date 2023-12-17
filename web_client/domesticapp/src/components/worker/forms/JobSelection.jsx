@@ -25,11 +25,16 @@ const jobs = [
 
 const JobSelection = () => {
   return (
-    <section className="flex flex-col mt-6">
-      {jobs?.map((job) => (
-        <JobSelectionOption key={job.id} jobName={job?.title} />
-      ))}
-    </section>
+    <div className="mt-6">
+      <p className="mb-1 dark:text-gray-200">
+        Select one or more jobs you are proficient at:
+      </p>
+      <section className="flex flex-col mb-6 p-3 border border-gray-500 rounded">
+        {jobs?.map((job) => (
+          <JobSelectionOption key={job.id} jobName={job?.title} />
+        ))}
+      </section>
+    </div>
   );
 };
 
