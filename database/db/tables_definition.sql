@@ -3,8 +3,8 @@ CREATE TABLE user_info (
     name VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    address VARCHAR(100),
     birth_date DATE,
+    password VARCHAR(255),
     user_type VARCHAR(100)
 );
 
@@ -15,9 +15,11 @@ CREATE TABLE client (
 
 CREATE TABLE address (
     address_loc VARCHAR(100),
-    worker_phone VARCHAR(11) NOT NULL,
-    CONSTRAINT fk_address_worker FOREIGN KEY (worker_phone) REFERENCES worker(phone),
-    PRIMARY KEY (address_loc, worker_phone)
+    user_phone VARCHAR(11) NOT NULL,
+  	lat DOUBLE PRECISION,
+  	lng DOUBLE PRECISION,
+    CONSTRAINT fk_address_user FOREIGN KEY (user_phone) REFERENCES user(phone),
+    PRIMARY KEY (address_loc, user_phone)
 );
 
 CREATE TABLE worker (
@@ -34,7 +36,7 @@ CREATE TABLE job (
 
 CREATE TABLE job_type (
     id SERIAL PRIMARY KEY,
-    hour_periodicity TIME,
+    hour_periodicity INT,
     periodicity_description VARCHAR(100)
 );
 
@@ -42,7 +44,6 @@ CREATE TABLE worker_job (
     worker_phone VARCHAR(11) NOT NULL,
     job_id SERIAL NOT NULL,
     price DOUBLE PRECISION CONSTRAINT chk_positive_price CHECK (price >= 0),
-    labor_type VARCHAR(100),
     job_type_id INT NOT NULL,
     PRIMARY KEY (worker_phone, job_id),
     CONSTRAINT fk_worker_job_worker FOREIGN KEY (worker_phone) REFERENCES worker(phone),
@@ -64,7 +65,7 @@ CREATE TABLE service (
 
 CREATE TABLE rating (
     rating_id SERIAL PRIMARY KEY,
-    rate FLOAT CHECK (rate >= 0 AND rate <= 5),
+    rate DOUBLE PRECISION CONSTRAINT chk_rate_range CHECK (rate >= 0 AND rate <= 5),
     service_id INT NOT NULL,
     worker_phone VARCHAR(11) NOT NULL,
     CONSTRAINT fk_rating_service FOREIGN KEY (service_id) REFERENCES service(service_id),
