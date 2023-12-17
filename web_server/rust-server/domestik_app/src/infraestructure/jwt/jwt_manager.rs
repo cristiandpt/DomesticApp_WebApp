@@ -22,12 +22,13 @@ use chrono::serde::ts_seconds;
 //use crate::config::Config;
 
 use std::env;
+use dotenv::dotenv;
 
-#[derive(Serialize, Deserialize)]
+
+#[derive(Serialize, Deserialize, Debug)]
 pub struct JwToken {
-    pub user_id: i32,
-    #[serde(with = "ts_seconds")]
-    pub minted: DateTime<Utc>
+    pub user_id: String,
+    pub exp: usize
 }
 
 impl FromRequest for JwToken {
@@ -69,13 +70,20 @@ impl JwToken {
         token
     }
 
-    pub fn new( user_id: i32) -> Self {
-        let timestamp = Utc::now();
-        return JwToken {
-            user_id,
-            minted: timestamp
-        }
+    pub fn new( user_id: String) -> Self { 
+
+            dotenv().ok(); // Load variables from .env file
+            let expires_time = env::var("EXPIRE_MINUTES").expect("EXPIRE_MINUTES not found in .env").parse::<i64>().unwrap();
+            let expiration = Utc::now()
+                .checked_add_signed(chrono::Duration::minutes(expires_time))
+                    .expect("valid timestamp")
+                        .timestamp();
+            return JwToken { 
+                user_id, 
+                exp: expiration as usize 
+            };
     }
+    
 
     pub fn from_token(token: String) -> Option<Self> {
         let api_key = DecodingKey::from_secret(JwToken::get_key().as_ref());

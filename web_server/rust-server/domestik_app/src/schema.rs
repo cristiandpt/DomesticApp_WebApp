@@ -100,6 +100,7 @@ diesel::table! {
         address -> Nullable<Varchar>,
         birth_date -> Nullable<Date>,
         user_type -> Nullable<Varchar>,
+        password -> Nullable<Varchar>,
     }
 }
 

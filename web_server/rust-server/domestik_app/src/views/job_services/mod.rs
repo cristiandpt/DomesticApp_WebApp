@@ -1,6 +1,7 @@
 mod get_all_services;
+mod request_service;
 
-use actix_web::web::{ServiceConfig, get, scope};
+use actix_web::web::{ServiceConfig, get, post, scope};
 
 
 /// Configures the job services resources for a domestik web application.
@@ -19,5 +20,6 @@ pub fn job_services_factory( app: &mut ServiceConfig) {
     app.service(                                            // Here there is a issue about understand the web::resource configuration in comparation with scope method
         scope("v1/job_services")                            // More info about https://actix.rs/docs/application  -- Tell about a dynamic path semgments for incomming request https://docs.rs/actix-web/4.4.0/actix_web/web/fn.resource.html 
         .route("services", get().to(get_all_services::get_services))
+        .route("services", post().to(request_service::request_service))
     );
 }
