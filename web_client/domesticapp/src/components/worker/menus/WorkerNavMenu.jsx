@@ -16,7 +16,7 @@ const WorkerNavMenu = ({ handleClick }) => {
           <Avatar /> My account
         </MenuItem>
       </Link>
-      <Link href="/worker/jobs" passHref>
+      <Link href="/worker/myJobs" passHref>
         <MenuItem component="a" onClick={handleClick}>
           <WorkIcon className="mr-3" /> My jobs
         </MenuItem>
@@ -26,9 +26,9 @@ const WorkerNavMenu = ({ handleClick }) => {
           <MonetizationOnIcon className="mr-3" /> Work now
         </MenuItem>
       </Link>
-      <Link href="/settings" passHref>
+      <Link href="/worker/notifications" passHref>
         <MenuItem component="a" onClick={handleClick}>
-          <NotificationsNoneIcon className="mr-3" /> Settings
+          <NotificationsNoneIcon className="mr-3" /> Notifications
         </MenuItem>
       </Link>
       <Divider />

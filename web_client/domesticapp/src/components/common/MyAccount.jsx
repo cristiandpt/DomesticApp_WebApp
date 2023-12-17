@@ -12,7 +12,6 @@ const MyAccount = ({ userType }) => {
     phoneNumber: '123-456-7890',
     email: 'john.doe@example.com',
     birthdate: '01/01/1990',
-    skills: ['Skill1', 'Skill2', 'Skill3'], // Worker-specific attribute
   });
 
   const [newSkill, setNewSkill] = useState('');
@@ -25,22 +24,6 @@ const MyAccount = ({ userType }) => {
     setUser((prevUser) => ({ ...prevUser, phoneNumber: newPhoneNumber }));
   };
 
-  const handleSkillChange = (e) => {
-    setNewSkill(e.target.value);
-  };
-
-  const handleAddSkill = () => {
-    setUser((prevUser) => ({ ...prevUser, skills: [...prevUser.skills, newSkill] }));
-    setNewSkill('');
-  };
-
-  const handleRemoveSkill = (index) => {
-    setUser((prevUser) => {
-      const updatedSkills = [...prevUser.skills];
-      updatedSkills.splice(index, 1);
-      return { ...prevUser, skills: updatedSkills };
-    });
-  };
 
   const handleSaveChanges = () => {
     // Add logic to save changes to the database
@@ -60,24 +43,7 @@ const MyAccount = ({ userType }) => {
             <p className="text-lg mb-2">Phone Number: {user.phoneNumber}</p>
             <p className="text-lg mb-2">Email: {user.email}</p>
             <p className="text-lg mb-2">Birthdate: {user.birthdate}</p>
-            {user.profile === 'worker' && (
-              <>
-                <p className="text-lg font-bold mb-2">Skills:</p>
-                <ul>
-                  {user.skills.map((skill, index) => (
-                    <li key={index} className="flex items-center mb-2">
-                      {skill}
-                      <button
-                        onClick={() => handleRemoveSkill(index)}
-                        className="ml-2 text-red-500"
-                      >
-                        X
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
+
           </div>
           <div>
             <h2 className="text-2xl font-bold mb-4">Edit Information</h2>
@@ -101,26 +67,7 @@ const MyAccount = ({ userType }) => {
                 className="border border-gray-400 rounded w-full p-2"
               />
             </label>
-            {user.profile === 'worker' && (
-              <>
-                <label htmlFor="newSkill" className="block mb-2">
-                  Add Skill:
-                  <input
-                    type="text"
-                    id="newSkill"
-                    value={newSkill}
-                    onChange={handleSkillChange}
-                    className="border border-gray-400 rounded w-full p-2"
-                  />
-                </label>
-                <button
-                  onClick={handleAddSkill}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
-                >
-                  Add Skill
-                </button>
-              </>
-            )}
+
             <button
               onClick={handleSaveChanges}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
