@@ -1,8 +1,9 @@
 use crate::schema::login;
+use crate::diesel::Insertable; 
 use chrono::NaiveDate;
 
 
-#[derive(Queryable, Insertable, Clone, Debug)]
+#[derive(Queryable, Insertable, Debug)]
 #[table_name="login"]
 pub struct Login {
     
