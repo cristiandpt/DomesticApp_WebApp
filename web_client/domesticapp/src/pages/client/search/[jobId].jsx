@@ -10,6 +10,7 @@ import RequestPageIcon from "@mui/icons-material/RequestPage";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import RequestServiceModal from "@/components/client/modals/RequestServiceModal";
+import RequestService from "@/components/client/forms/RequestService";
 
 const jobOptions = [
   {
@@ -120,6 +121,10 @@ const workers = [
     last_name: "Bonnell",
     rating: 2.1,
     distance: 1.09,
+    job: {
+      id: 1,
+      name: "Landscaping",
+    },
     price: 69,
   },
   {
@@ -357,10 +362,7 @@ const JobSearch = () => {
           setOpen={setRequestModal}
           modalTitle={"Request information"}
         >
-          <p>
-            {" "}
-            This is the body for the modal to request worker {requestWorker?.id}
-          </p>
+          <RequestService worker={requestWorker} price={24} />
         </RequestServiceModal>
       </main>
     </>
