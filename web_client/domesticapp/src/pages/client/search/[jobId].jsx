@@ -10,6 +10,7 @@ import RequestPageIcon from "@mui/icons-material/RequestPage";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import RequestServiceModal from "@/components/client/modals/RequestServiceModal";
+import RequestService from "@/components/client/forms/RequestService";
 
 const jobOptions = [
   {
@@ -120,6 +121,10 @@ const workers = [
     last_name: "Bonnell",
     rating: 2.1,
     distance: 1.09,
+    job: {
+      id: 1,
+      name: "Landscaping",
+    },
     price: 69,
   },
   {
@@ -174,12 +179,14 @@ const workers = [
 const JobSearch = () => {
   const router = useRouter();
   const query = router.query;
+  const allJobs = "all";
   const [selectedJob, setSelectedJob] = useState(defaultJobSearchOption);
   const [selectedSortOption, setSelectedSortOption] =
     useState(defaultJobSortOption);
   const [requestModal, setRequestModal] = useState(false);
   const [requestWorker, setRequestWorker] = useState(null);
   console.log("The requested worker is:", requestWorker);
+  console.log("The selected job is:", selectedJob);
   return (
     <>
       <p> The job your are looking for is: {query.jobId}</p>
@@ -211,6 +218,14 @@ const JobSearch = () => {
                         >
                           Worker
                         </th>
+                        {selectedJob?.id === allJobs && (
+                          <th
+                            scope="col"
+                            className="max-[768px]:hidden px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider md:text-left"
+                          >
+                            Job
+                          </th>
+                        )}
                         <th
                           scope="col"
                           className="max-[768px]:hidden px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -259,6 +274,11 @@ const JobSearch = () => {
                                     readOnly
                                     size="small"
                                   />
+                                  {selectedJob?.id === allJobs && (
+                                    <p className="text-sm font-semibold leading-6 text-gray-900">
+                                      {worker?.job?.name}
+                                    </p>
+                                  )}
                                 </div>
                               </div>
                               <div className="flex flex-col">
@@ -306,6 +326,13 @@ const JobSearch = () => {
                                 </div>
                               </div>
                             </td>
+                            {selectedJob?.id === allJobs && (
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="text-sm text-gray-900">
+                                  {worker?.job?.name}
+                                </div>
+                              </td>
+                            )}
                             <td className="px-6 py-4 whitespace-nowrap">
                               <div className="text-sm text-gray-900">
                                 <Rating
@@ -357,10 +384,7 @@ const JobSearch = () => {
           setOpen={setRequestModal}
           modalTitle={"Request information"}
         >
-          <p>
-            {" "}
-            This is the body for the modal to request worker {requestWorker?.id}
-          </p>
+          <RequestService worker={requestWorker} price={24} />
         </RequestServiceModal>
       </main>
     </>

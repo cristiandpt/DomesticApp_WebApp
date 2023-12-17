@@ -54,7 +54,7 @@ const RequestServiceModal = ({ open, setOpen, modalTitle, children }) => {
                 />
               </div>
               <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:justify-center">{children}</div>
+                <div>{children}</div>
               </div>
             </div>
           </Transition.Child>
