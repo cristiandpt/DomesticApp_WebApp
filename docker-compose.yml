@@ -52,8 +52,8 @@ services:
       - POSTGRES_DB=domesticapp_db
     volumes:
       - .database/db:/var/lib/postgresql/data
-      #- .database/data/00-database.sql:/docker-entrypoint-initdb.d/00-database.sql
-      #- .database/data/01-records.sql:/docker-entrypoint-initdb.d/01-records.sql
+      - .database/data/00-tables_definition.sql:/docker-entrypoint-initdb.d/00-tables_definition.sql
+      - .database/data/01-records.sql:/docker-entrypoint-initdb.d/01-records.sql
       #- .database/data/02-triggers.sql:/docker-entrypoint-initdb.d/02-triggers.sql
       #- .database/data/03-functions.sql:/docker-entrypoint-initdb.d/03-functions.sql
       #- .database/data/04-procedures.sql:/docker-entrypoint-initdb.d/04-procedures.sql  
