@@ -4,9 +4,7 @@ import MyJobs from '@/components/common/MyJobs';
 import React from 'react';
 
 const MyJobsPage = () => {
-
-  const userType = 'worker'; // or 'client'
-  return <MyJobs userType={userType}/>;
+  return <MyJobs userType={'worker'}/>;
 };
 
 export default MyJobsPage;

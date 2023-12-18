@@ -1,16 +1,14 @@
 import JobsCarousel from "@/components/client/home/JobsCarousel";
-import MapWidget from "@/components/client/location/MapWidget";
+import GlobalLayout from "@/components/common/GlobalLayout";
 import Navbar from "@/components/common/Navbar";
 
 const Index = () => {
   return (
-    <>
-      <Navbar isClient />
-
+    <GlobalLayout>
       <section className="m-16 grid">
         <JobsCarousel />
       </section>
-    </>
+    </GlobalLayout>
   );
 };
 

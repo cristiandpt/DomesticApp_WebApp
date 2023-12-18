@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import GlobalLayout from './GlobalLayout';
 
 const MyAccount = ({ userType }) => {
   // Sample user information, replace with actual data fetched from the database
@@ -32,7 +33,7 @@ const MyAccount = ({ userType }) => {
 
   return (
     <div>
-      <Header isWorker />
+      <GlobalLayout userType={userType}>
       <main className="container mx-auto p-8">
         <h1 className="text-4xl font-bold mb-4">My Account</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -77,7 +78,7 @@ const MyAccount = ({ userType }) => {
           </div>
         </div>
       </main>
-      <Footer />
+      </GlobalLayout>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import PasswordFields from "@/components/common/PasswordFields";
 import PersonalData from "@/components/common/PersonalData";
 import JobSelection from "./JobSelection";
-import { FormProvider } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 
 const SignUpForm = () => {
   const formMethods = useForm();

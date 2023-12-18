@@ -4,7 +4,7 @@ import React from 'react';
 
 const MyAccountPage = () => {
   // Assume userType is passed or fetched based on the user type
-  return <MyAccount userType={'worker'} />;
+  return <MyAccount userType={'client'} />;
 };
 
 export default MyAccountPage;
