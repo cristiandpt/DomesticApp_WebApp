@@ -46,13 +46,12 @@ VALUES
 INSERT INTO client (phone, services_url)
 VALUES
   ('3186459838', 'https://www.example.com/services/johndoe'),
-  ('3046822820', 'https://www.example.com/services/bobjohnson');
+  ('3128476962', 'https://www.example.com/services/bobjohnson');
 
 -- Additional data for the address table
 INSERT INTO address (address_loc, user_phone, lat, lng)
 VALUES
   ('Cra. 100 # 5 - 169, Cali, Valle del Cauca', '3186459838', 3.37405095, -76.53953223137889),
-  ('Cra. 98 #16-200, Cali, Valle del Cauca', '3046822820', 3.36831945, -76.53025944682176),
   ('Cl. 13 #100-00, El Ingenio, Cali, Valle del Cauca', '3128476962', 3.43722,-76.5225);
 
 -- Additional data for the worker table

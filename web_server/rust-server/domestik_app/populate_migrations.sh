@@ -12,9 +12,14 @@ else
   diesel migration generate data 
   TIMESTAMP_DATA=$(ls migrations | grep data)
   # populating up.sql
+  echo "++++ POPULATING UP.SQL ++++"
   cat ./database/db/tables_definition.sql> "migrations/${TIMESTAMP_DATA}/up.sql"
+  # inserting data
+  echo "++++ INSERTING INFO INTO UP.SQL ++++"
+  cat ./database/db/records.sql >> "migrations/${TIMESTAMP_DATA}/up.sql"
 
   # dropping tables in down.sql
+  echo "++++ POPULATING DOWN.SQL ++++"
   grep "TABLE" ./database/db/tables_definition.sql | sed 's/ (//g' | sed 's/CREATE/DROP/' | awk '{print $0";"}' | tac > "migrations/${TIMESTAMP_DATA}/down.sql"
   
   # migrate tables to postgres container
