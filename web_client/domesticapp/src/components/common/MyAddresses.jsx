@@ -1,31 +1,29 @@
-import React, { useState } from "react";
-import AddressCard from "./AddressCard";
-import { Button, TextField, Typography, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import React, { useState } from 'react';
+import AddressCard from './AddressCard';
 
 const MyAddresses = () => {
   const [addresses, setAddresses] = useState([
-    { id: 1, name: "Home", location: "123 Main St", isFavorite: true },
-    { id: 2, name: "Work", location: "456 Office St", isFavorite: false },
+    { id: 1, name: 'Home', location: '123 Main St', isFavorite: true },
+    { id: 2, name: 'Work', location: '456 Office St', isFavorite: false },
   ]);
 
-  const [newAddressName, setNewAddressName] = useState("");
-  const [newAddressLocation, setNewAddressLocation] = useState("");
-  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [newAddress, setNewAddress] = useState({
+    name: '',
+    location: '',
+  });
 
-  const handleCreateAddress = () => {
-    if (newAddressName && newAddressLocation) {
-      const newAddress = {
+  const handleCreateAddress = (e) => {
+    e.preventDefault();
+    if (newAddress.name && newAddress.location) {
+      const createdAddress = {
         id: addresses.length + 1,
-        name: newAddressName,
-        location: newAddressLocation,
+        name: newAddress.name,
+        location: newAddress.location,
         isFavorite: false,
       };
 
-      setAddresses([...addresses, newAddress]);
-      setNewAddressName("");
-      setNewAddressLocation("");
-      setDialogOpen(false);
+      setAddresses([...addresses, createdAddress]);
+      setNewAddress({ name: '', location: '' });
     }
   };
 
@@ -34,7 +32,6 @@ const MyAddresses = () => {
       address.id === id ? { ...address, name: editedName, location: editedLocation } : address
     );
     setAddresses(updatedAddresses);
-    setDialogOpen(false);
   };
 
   const handleDeleteAddress = (id) => {
@@ -49,19 +46,9 @@ const MyAddresses = () => {
     setAddresses(updatedAddresses);
   };
 
-  const handleOpenDialog = () => {
-    setNewAddressName("");
-    setNewAddressLocation("");
-    setDialogOpen(true);
-  };
-
-  const handleCloseDialog = () => {
-    setDialogOpen(false);
-  };
-
   return (
     <div>
-      <Typography variant="h4">My Addresses</Typography>
+      <h4>My Addresses</h4>
       <div>
         {addresses.map((address) => (
           <div key={address.id} style={{ marginBottom: 20 }}>
@@ -75,34 +62,25 @@ const MyAddresses = () => {
         ))}
       </div>
       <div style={{ marginTop: 20, marginBottom: 20 }}>
-        <Typography variant="h5">Create New Address</Typography>
-        <Button onClick={handleOpenDialog} startIcon={<AddIcon />}>
-          Create
-        </Button>
+        <h5>Create New Address</h5>
+        <form onSubmit={handleCreateAddress}>
+          <label htmlFor="newAddressName">Name:</label>
+          <input
+            type="text"
+            id="newAddressName"
+            value={newAddress.name}
+            onChange={(e) => setNewAddress({ ...newAddress, name: e.target.value })}
+          />
+          <label htmlFor="newAddressLocation">Location:</label>
+          <input
+            type="text"
+            id="newAddressLocation"
+            value={newAddress.location}
+            onChange={(e) => setNewAddress({ ...newAddress, location: e.target.value })}
+          />
+          <button type="submit">Create Address</button>
+        </form>
       </div>
-      <Dialog open={isDialogOpen} onClose={handleCloseDialog}>
-        <DialogTitle>Create New Address</DialogTitle>
-        <DialogContent>
-          <TextField
-            label="Name"
-            value={newAddressName}
-            onChange={(e) => setNewAddressName(e.target.value)}
-          />
-          <TextField
-            label="Location"
-            value={newAddressLocation}
-            onChange={(e) => setNewAddressLocation(e.target.value)}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDialog} color="secondary">
-            Cancel
-          </Button>
-          <Button onClick={handleCreateAddress} color="primary">
-            Create
-          </Button>
-        </DialogActions>
-      </Dialog>
     </div>
   );
 };

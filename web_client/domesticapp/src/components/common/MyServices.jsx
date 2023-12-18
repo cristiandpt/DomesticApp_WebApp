@@ -8,18 +8,18 @@ const MyServices = ({userType}) => {
   const [jobRecords, setJobRecords] = useState([
     {
       id: 1,
-      requester: 'Alice',
+      worker: 'Alice',
       jobName: 'Plumbing',
       status: 'Completed',
-      earnings: 50,
+      fee: 50,
       rating: 4,
     },
     {
       id: 2,
-      requester: 'Bob',
+      worker: 'Bob',
       jobName: 'Landscaping',
       status: 'In Progress',
-      earnings: 75,
+      fee: 75,
       rating: 5,
     },
     // Add more job records as needed
@@ -34,7 +34,7 @@ const MyServices = ({userType}) => {
           {jobRecords.map((job) => (
             <div key={job.id} className="border p-4 mb-4">
               <p>
-                Requester: {job.requester} | Job: {job.jobName} | Status: {job.status} | Earnings: ${job.earnings} | Rating: {job.rating}/5
+                Worker: {job.worker} | Job: {job.jobName} | Status: {job.status} | Fee: ${job.fee} | Rating: {job.rating}/5
               </p>
             </div>
           ))}

@@ -1,17 +1,5 @@
 import React, { useState } from 'react';
 import GlobalLayout from './GlobalLayout';
-import {
-  Button,
-  TextField,
-  Typography,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Select,
-  MenuItem,
-} from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 
 const MyJobs = ({ userType }) => {
   const [jobs, setJobs] = useState([
@@ -41,7 +29,7 @@ const MyJobs = ({ userType }) => {
     pricePerUnit: 0,
   });
 
-  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [isFormVisible, setFormVisible] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -55,24 +43,24 @@ const MyJobs = ({ userType }) => {
       paymentMethod: 'one-time-payment',
       pricePerUnit: 0,
     });
-    setDialogOpen(false);
+    setFormVisible(false);
   };
 
   const handleRemoveJob = (id) => {
     setJobs((prevJobs) => prevJobs.filter((job) => job.id !== id));
   };
 
-  const handleOpenDialog = () => {
+  const handleShowForm = () => {
     setNewJob({
       title: '',
       paymentMethod: 'one-time-payment',
       pricePerUnit: 0,
     });
-    setDialogOpen(true);
+    setFormVisible(true);
   };
 
-  const handleCloseDialog = () => {
-    setDialogOpen(false);
+  const handleHideForm = () => {
+    setFormVisible(false);
   };
 
   return (
@@ -94,7 +82,7 @@ const MyJobs = ({ userType }) => {
                     <button onClick={() => handleRemoveJob(job.id)} className="text-red-500 mr-2">
                       Remove
                     </button>
-                    <button onClick={handleOpenDialog} className="text-blue-500">
+                    <button onClick={handleShowForm} className="text-blue-500">
                       Edit
                     </button>
                   </div>
@@ -102,44 +90,56 @@ const MyJobs = ({ userType }) => {
               ))}
             </ul>
           </div>
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Add New Job</h2>
-            <Button onClick={handleOpenDialog} startIcon={<AddIcon />}>
-              Add Job
-            </Button>
-          </div>
+          {isFormVisible && (
+            <div>
+              <h2 className="text-2xl font-bold mb-4">Edit Job</h2>
+              <form>
+                <label htmlFor="title" className="block mb-2">
+                  Title:
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    value={newJob.title}
+                    onChange={handleInputChange}
+                  />
+                </label>
+                <label htmlFor="paymentMethod" className="block mb-2">
+                  Payment Method:
+                  <select
+                    id="paymentMethod"
+                    name="paymentMethod"
+                    value={newJob.paymentMethod}
+                    onChange={handleInputChange}
+                  >
+                    <option value="one-time-payment">One-Time Payment</option>
+                    <option value="per-project">Per Project</option>
+                    <option value="per-hour">Per Hour</option>
+                  </select>
+                </label>
+                <label htmlFor="pricePerUnit" className="block mb-2">
+                  Price Per Unit ($):
+                  <input
+                    type="number"
+                    id="pricePerUnit"
+                    name="pricePerUnit"
+                    value={newJob.pricePerUnit}
+                    onChange={handleInputChange}
+                  />
+                </label>
+                <button type="submit" onClick={handleAddJob}>
+                  Create Job
+                </button>
+                <button type="button" onClick={handleHideForm}>
+                  Cancel
+                </button>
+              </form>
+            </div>
+          )}
         </div>
-        <Dialog open={isDialogOpen} onClose={handleCloseDialog}>
-          <DialogTitle>Edit Job</DialogTitle>
-          <DialogContent>
-            <TextField label="Title" name="title" value={newJob.title} onChange={handleInputChange} />
-            <Select
-              label="Payment Method"
-              name="paymentMethod"
-              value={newJob.paymentMethod}
-              onChange={handleInputChange}
-            >
-              <MenuItem value="one-time-payment">One-Time Payment</MenuItem>
-              <MenuItem value="per-project">Per Project</MenuItem>
-              <MenuItem value="per-hour">Per Hour</MenuItem>
-            </Select>
-            <TextField
-              label="Price Per Unit ($)"
-              name="pricePerUnit"
-              type="number"
-              value={newJob.pricePerUnit}
-              onChange={handleInputChange}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseDialog} color="secondary">
-              Cancel
-            </Button>
-            <Button onClick={handleAddJob} color="primary">
-              Save
-            </Button>
-          </DialogActions>
-        </Dialog>
+        <button onClick={handleShowForm} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+          Create Job
+        </button>
       </main>
     </GlobalLayout>
   );
