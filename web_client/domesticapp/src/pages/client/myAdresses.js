@@ -1,6 +1,7 @@
 // myAddresses.js
 import GlobalLayout from "@/components/common/GlobalLayout";
-import MyAddresses from "@/components/common/myAddresses";
+import MyAddresses from "@/components/common/MyAddresses";
+
 import React from "react";
 
 const MyAddressesPage = () => {
