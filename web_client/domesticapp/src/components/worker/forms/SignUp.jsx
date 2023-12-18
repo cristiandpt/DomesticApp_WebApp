@@ -2,13 +2,27 @@ import PasswordFields from "@/components/common/PasswordFields";
 import PersonalData from "@/components/common/PersonalData";
 import JobSelection from "./JobSelection";
 import { FormProvider, useForm } from "react-hook-form";
+import InvalidField from "@/components/common/InvalidField";
 
 const SignUpForm = () => {
   const formMethods = useForm();
-
+  const { register } = formMethods;
+  const validateField = (field, validation) => {
+    return formMethods.formState.errors[`${field}`]?.type === validation;
+  };
+  const fieldHasErrors = (field) => {
+    return formMethods.formState.errors[`${field}`];
+  };
+  const PFP_REQUIRED = validateField("pfp_url", "required");
+  const CC_REQUIRED = validateField("cc_url", "required");
   return (
     <FormProvider {...formMethods}>
-      <form>
+      <form
+        onSubmit={formMethods.handleSubmit(
+          (fields) => console.log("Sumbitted data:", fields),
+          (e) => console.log("There was this error", e)
+        )}
+      >
         <section className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
           <PersonalData />
           <PasswordFields />
@@ -44,8 +58,16 @@ const SignUpForm = () => {
                 <p className="mt-2 text-xs tracking-wide text-gray-500 dark:text-gray-400">
                   Upload your file SVG, PNG, JPG or GIF.{" "}
                 </p>
-                <input id="dropzone-pfp-file" type="file" className="hidden" />
+                <input
+                  id="dropzone-pfp-file"
+                  type="file"
+                  {...register("pfp_url", { required: true })}
+                  className="hidden"
+                />
               </label>
+              {PFP_REQUIRED && (
+                <InvalidField message={"This field is required"} />
+              )}
             </div>
           </div>
           <div className="w-full">
@@ -80,8 +102,16 @@ const SignUpForm = () => {
                 <p className="mt-2 text-xs tracking-wide text-gray-500 dark:text-gray-400">
                   Upload your file SVG, PNG, JPG or GIF.{" "}
                 </p>
-                <input id="dropzone-id-file" type="file" className="hidden" />
+                <input
+                  id="dropzone-id-file"
+                  {...register("cc_url", { required: true })}
+                  type="file"
+                  className="hidden"
+                />
               </label>
+              {CC_REQUIRED && (
+                <InvalidField message={"This field is required"} />
+              )}
             </div>
           </div>
         </section>
@@ -89,20 +119,11 @@ const SignUpForm = () => {
         <JobSelection />
         <div className="flex items-end">
           <div>
-            <button className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-              <span>Sign Up </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5 rtl:-scale-x-100"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+            <button
+              type="submit"
+              className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+            >
+              Sign up
             </button>
           </div>
         </div>
