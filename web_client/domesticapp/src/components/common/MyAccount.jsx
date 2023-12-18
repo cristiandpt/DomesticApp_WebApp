@@ -1,20 +1,9 @@
-// components/MyAccount.jsx
 import React, { useState } from 'react';
-import {
-  Typography,
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  TextField,
-} from '@mui/material';
 import Header from './Header';
 import Footer from './Footer';
 import GlobalLayout from './GlobalLayout';
 
 const MyAccount = ({ userType }) => {
-  // Sample user information, replace with actual data fetched from the database
   const [user, setUser] = useState({
     profile: userType, // 'client' or 'worker'
     photo: 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg', // Set a default profile photo
@@ -27,25 +16,26 @@ const MyAccount = ({ userType }) => {
   const [newEmail, setNewEmail] = useState(user.email);
   const [newPhoneNumber, setNewPhoneNumber] = useState(user.phoneNumber);
 
-  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [isFormOpen, setFormOpen] = useState(false);
 
-  const handleOpenDialog = () => {
+  const handleOpenForm = () => {
     setNewEmail(user.email);
     setNewPhoneNumber(user.phoneNumber);
-    setDialogOpen(true);
+    setFormOpen(true);
   };
 
-  const handleCloseDialog = () => {
-    setDialogOpen(false);
+  const handleCloseForm = () => {
+    setFormOpen(false);
   };
 
-  const handleSaveChanges = () => {
+  const handleSaveChanges = (e) => {
+    e.preventDefault();
     setUser((prevUser) => ({
       ...prevUser,
       email: newEmail,
       phoneNumber: newPhoneNumber,
     }));
-    setDialogOpen(false);
+    setFormOpen(false);
   };
 
   return (
@@ -64,41 +54,33 @@ const MyAccount = ({ userType }) => {
             </div>
             <div>
               <h2 className="text-2xl font-bold mb-4">Edit Information</h2>
-              <Button
-                onClick={handleOpenDialog}
-                variant="outlined"
-                color="primary"
-                className="mb-4"
-              >
+              <button onClick={handleOpenForm} className="mb-4">
                 Change Information
-              </Button>
+              </button>
             </div>
           </div>
-          <Dialog open={isDialogOpen} onClose={handleCloseDialog}>
-            <DialogTitle>Change Information</DialogTitle>
-            <DialogContent>
-              <TextField
-                label="Email"
-                fullWidth
+          {isFormOpen && (
+            <form onSubmit={handleSaveChanges}>
+              <label htmlFor="newEmail">Email:</label>
+              <input
+                type="text"
+                id="newEmail"
                 value={newEmail}
                 onChange={(e) => setNewEmail(e.target.value)}
               />
-              <TextField
-                label="Phone Number"
-                fullWidth
+              <label htmlFor="newPhoneNumber">Phone Number:</label>
+              <input
+                type="text"
+                id="newPhoneNumber"
                 value={newPhoneNumber}
                 onChange={(e) => setNewPhoneNumber(e.target.value)}
               />
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleCloseDialog} color="secondary">
+              <button type="submit">Save Changes</button>
+              <button type="button" onClick={handleCloseForm}>
                 Cancel
-              </Button>
-              <Button onClick={handleSaveChanges} color="primary">
-                Save Changes
-              </Button>
-            </DialogActions>
-          </Dialog>
+              </button>
+            </form>
+          )}
         </main>
       </GlobalLayout>
     </div>
