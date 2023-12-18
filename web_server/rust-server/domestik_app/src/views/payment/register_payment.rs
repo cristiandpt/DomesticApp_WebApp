@@ -23,8 +23,8 @@ pub async fn register(new_payment: web::Json<NewPaymentJson>, db: DB) -> impl Re
                  );
 
     let insert_payment_result = diesel::insert_into(payment::table)
-        .values(&payment)
-        .execute(&db.connection);
+                                    .values(&payment)
+                                        .execute(&db.connection);
 
     match insert_payment_result {
         Ok(_) => HttpResponse::Created(),

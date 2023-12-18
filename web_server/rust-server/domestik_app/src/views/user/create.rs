@@ -8,7 +8,7 @@ use crate::infraestructure::jwt::jwt_manager::JwToken;
 use crate::schema::user_info;
 use chrono::NaiveDate;
 
-pub async fn create(new_user: web::Json<NewUserJson>, db: DB) -> HttpResponse {
+pub async fn create(new_user: web::Json<NewUserJson>, db: DB) -> impl Responder {
 
     println!("Arriving to create user");
     // Encrypt the password
@@ -26,15 +26,16 @@ pub async fn create(new_user: web::Json<NewUserJson>, db: DB) -> HttpResponse {
     );
 
     // Create a JWT token
-    let token = JwToken::new(new_user.name.clone());
-    let raw_token = token.encode();
+    // let token = JwToken::new(new_user.name.clone());
+    // let raw_token = token.encode();
+    // HttpResponse::Ok().json(raw_token)
 
-    // let insert_result = diesel::insert_into(user_info::table).values(&new_user).execute(&db.connection);
-    // match insert_result {
-    //     Ok(_) => HttpResponse::Created(),
-    //     Err(_) => HttpResponse::Conflict()
-    // }
+    let insert_result = diesel::insert_into(user_info::table)
+                         .values(&new_user).execute(&db.connection);
+    
+    match insert_result {
+        Ok(_) => HttpResponse::Created(),
+        Err(_) => HttpResponse::Conflict()
+    }
 
-    // Return the token as the response
-    HttpResponse::Ok().json(raw_token)
 }
