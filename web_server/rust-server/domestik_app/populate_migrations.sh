@@ -26,6 +26,9 @@ else
   # migrate tables to postgres container
   diesel migration run
 #   tail -f /dev/null
+
+  # remove max_length causing conflicts
+sed -i '/max_length/d' ./src/schema.rs 
   cargo run
 fi
 
