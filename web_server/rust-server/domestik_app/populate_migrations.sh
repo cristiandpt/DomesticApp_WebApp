@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "DATABASE_URL=${DATABASE_URL}" > .env
+echo "EXPIRE_MINUTES=5" >> .env
 
 TIMESTAMP_DATA=$(ls migrations | grep data)
 if [ -d "migrations/${TIMESTAMP_DATA}/" ]; then

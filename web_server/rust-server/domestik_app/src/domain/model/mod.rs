@@ -9,3 +9,4 @@ pub mod rating;
 pub mod invoice;
 pub mod login;
 pub mod login_temp;
+//pub mod new_user;

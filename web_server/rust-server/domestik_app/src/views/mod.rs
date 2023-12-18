@@ -3,10 +3,12 @@ mod auth;
 pub mod api;
 mod payment;
 mod worker;
+mod user;
 
 use job_services::job_services_factory;
 use auth::auth_views_factory;
 use payment::payments_factory;
+use user::user_views_factory;
 
 use actix_web::web::ServiceConfig;
 
@@ -21,5 +23,6 @@ use actix_web::web::ServiceConfig;
 pub fn view_factory(app: &mut ServiceConfig) {
     job_services_factory(app);               // It configure for job_services resources module functionality.
     auth_views_factory(app);     
-    payments_factory(app);            // It configure for auth resources module functionality.
+    payments_factory(app);
+    user_views_factory(app);            // It configure for auth resources module functionality.
 }

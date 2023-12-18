@@ -17,16 +17,19 @@ use std::time::{SystemTime, UNIX_EPOCH};
 pub async fn login(credentials: web::Json<Login>, db: DB) -> impl Responder {
     let _password = credentials.password.clone();
 
+    println!("After of the print: {:?}", credentials);
+
     let current_time = SystemTime::now()
                         .duration_since(UNIX_EPOCH)
                             .expect("Failed to retrieve system time.");
 
+    println!("Before of the print.");
 
     let user = user_info::table.filter(user_info::columns::user_phone.eq(credentials.username.clone())
                 .or(user_info::columns::email.eq(credentials.username.clone())))
                     .load::<UserInfo>(&db.connection).unwrap();
 
-    
+    println!("After of the print.");
 
     if user.len() == 0 {
         return HttpResponse::NotFound().await.unwrap()
