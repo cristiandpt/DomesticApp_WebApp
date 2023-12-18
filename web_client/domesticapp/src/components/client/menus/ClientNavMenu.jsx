@@ -7,6 +7,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import HomeIcon from '@mui/icons-material/Home';
 
 const ClientNavMenu = ({ handleClick }) => {
   return (
@@ -32,6 +33,13 @@ const ClientNavMenu = ({ handleClick }) => {
         </MenuItem>
       </Link>
       <Divider />
+      <Link href="/client/home" passHref>
+        <MenuItem component="a" onClick={handleClick}>
+          <HomeIcon className="mr-3" /> Home
+        </MenuItem>
+      </Link>
+      <Divider />
+      
       <Link href="/" passHref>
         <MenuItem
           className="font-bold"

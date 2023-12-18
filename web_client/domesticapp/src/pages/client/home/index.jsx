@@ -4,7 +4,7 @@ import Navbar from "@/components/common/Navbar";
 
 const Index = () => {
   return (
-    <GlobalLayout>
+    <GlobalLayout userType={'client'}>
       <section className="m-16 grid">
         <JobsCarousel />
       </section>
