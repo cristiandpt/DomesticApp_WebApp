@@ -7,7 +7,7 @@ use chrono::NaiveDate;
 #[table_name="login"]
 pub struct Login {
     
-    pub loginid: i32,
+    pub login_id: i32,
     #[diesel(serialize_as = Option<String>)]
     pub username: Option<String>,
     #[diesel(serialize_as = Option<String>)]

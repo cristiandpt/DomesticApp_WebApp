@@ -5,10 +5,9 @@ pub fn user_entity_to_user_api( user: &UserInfo) -> UserJson {
     
     UserJson {
         user_phone: user.user_phone.clone(),
-        name: user.name.clone().unwrap_or_default(),
-        lastname: user.lastname.clone().unwrap_or_default(),
-        email: user.email.clone().unwrap_or_default(),
-        address: user.address.clone().unwrap_or_default(),
+        name: user.name.clone(),
+        lastname: user.lastname.clone(),
+        email: user.email.clone(),
         birth_date: user
             .birth_date
             .map(|date| date.to_string())

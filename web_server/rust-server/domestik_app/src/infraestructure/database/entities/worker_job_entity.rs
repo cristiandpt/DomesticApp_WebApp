@@ -7,9 +7,9 @@ use chrono::NaiveDate;
 #[table_name="worker_job"]
 pub struct Worker_job{
     pub user_phone : String,
-    pub jobid : i32,
+    pub job_id : i32,
     #[diesel(serialize_as = Option<f32>)]
     pub price : Option<f32>,
     #[diesel(serialize_as = Option<String>)]
-    pub labortype : Option<String>
+    pub labor_type : Option<String>
 }

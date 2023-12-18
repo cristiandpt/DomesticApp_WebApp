@@ -18,7 +18,7 @@ CREATE TABLE address (
     user_phone VARCHAR(11) NOT NULL,
   	lat DOUBLE PRECISION,
   	lng DOUBLE PRECISION,
-    CONSTRAINT fk_address_user FOREIGN KEY (user_phone) REFERENCES user(phone),
+    CONSTRAINT fk_address_user FOREIGN KEY (user_phone) REFERENCES user_info(user_phone),
     PRIMARY KEY (address_loc, user_phone)
 );
 

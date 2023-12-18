@@ -7,7 +7,7 @@ pub fn job_entity_to_job_api( job: &Job) -> Service {
             None => String::from(""),
      };
    Service::new(
-        job.jobid,
+        job.job_id,
         job_name
    )
 }

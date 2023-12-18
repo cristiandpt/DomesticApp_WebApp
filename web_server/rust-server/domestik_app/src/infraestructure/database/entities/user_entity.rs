@@ -8,14 +8,12 @@ use chrono::NaiveDate;
 #[table_name="user_info"]
 pub struct UserInfo {
     pub user_phone: String,
-    #[diesel(serialize_as = Option<String>)]
-    pub name: Option<String>,
-    #[diesel(serialize_as = Option<String>)]
-    pub lastname: Option<String>,
-    #[diesel(serialize_as = Option<String>)]
-    pub email: Option<String>,
-    #[diesel(serialize_as = Option<String>)]
-    pub address: Option<String>,
+    #[diesel(serialize_as = String)]
+    pub name: String,
+    #[diesel(serialize_as = String)]
+    pub lastname: String,
+    #[diesel(serialize_as = String)]
+    pub email: String,
     #[diesel(serialize_as = Option<NaiveDate>)]
     pub birth_date: Option<NaiveDate>,
     #[diesel(serialize_as = Option<String>)]

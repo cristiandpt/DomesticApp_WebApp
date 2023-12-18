@@ -6,7 +6,6 @@ pub struct UserJson {
     pub name: String,
     pub lastname: String,
     pub email: String,
-    pub address: String,
     pub birth_date: String,
     pub password: String,
     pub user_type: String

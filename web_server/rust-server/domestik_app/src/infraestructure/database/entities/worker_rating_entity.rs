@@ -9,5 +9,5 @@ pub struct Worker_rating{
     pub id : i32,
     pub user_phone : String,
     #[diesel(serialize_as = Option<i32>)]
-    pub ratingid : Option<i32>
+    pub rating_id : Option<i32>
 }

@@ -5,7 +5,7 @@ use diesel::Insertable;
 #[derive(Queryable, Insertable, Clone, Debug)]
 #[table_name="service"]
 pub struct Service {
-    pub serviceid : i32,
+    pub service_id : i32,
     #[diesel(serialize_as = Option<String>)]
     pub description : Option<String>,
     #[diesel(serialize_as = Option<String>)]
@@ -15,6 +15,6 @@ pub struct Service {
     #[diesel(serialize_as = Option<String>)]
     pub worker_phone : Option<String>
     #[diesel(serialize_as = Option<i32>)]
-    pub jobid : Option<i32>
+    pub job_id : Option<i32>
 
 }
